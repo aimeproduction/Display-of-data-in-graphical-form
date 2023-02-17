@@ -1,0 +1,14 @@
+/*
+We personalize the logo image (width, height, align etc)
+ */
+.profile-card {
+  text-align: center;
+  padding: 0 20px 20px 20px;
+}
+img {
+  width: 125px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+

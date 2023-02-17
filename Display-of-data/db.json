@@ -1,0 +1,259 @@
+{
+  "queries": [
+    {
+      "queriesJsonData": [
+        {
+          "id": "demo",
+          "path": "demo",
+          "name": "demo",
+          "type": "FOLDER",
+          "open": true,
+          "data": [
+            {
+              "id": "demo_auslastungsdaten",
+              "path": "demo/auslastungsdaten",
+              "name": "auslastungsdaten",
+              "type": "STATISTIC"
+            },
+            {
+              "id": "demo_dienste",
+              "path": "demo/dienste",
+              "name": "dienste",
+              "type": "FOLDER",
+              "open": false,
+              "data": [
+                {
+                  "id": "demo_dienste_alle",
+                  "path": "demo/dienste/alle",
+                  "name": "alle",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_dienste_angio",
+                  "path": "demo/dienste/angio",
+                  "name": "angio",
+                  "type": "STATISTIC"
+                }
+              ]
+            },
+            {
+              "id": "demo_ger_te_auslastungen",
+              "path": "demo/geräte-auslastungen",
+              "name": "geräte-auslastungen",
+              "type": "FOLDER",
+              "open": false,
+              "data": [
+                {
+                  "id": "demo_ger_te_auslastungen_anmeldezeit___angio_intervention",
+                  "path": "demo/geräte-auslastungen/anmeldezeit - angio-intervention",
+                  "name": "anmeldezeit - angio-intervention",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_anmeldezeit___angio_intervention__tage_",
+                  "path": "demo/geräte-auslastungen/anmeldezeit - angio-intervention (tage)",
+                  "name": "anmeldezeit - angio-intervention (tage)",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_anmeldezeit___template_bis_100_tage",
+                  "path": "demo/geräte-auslastungen/anmeldezeit - template bis 100 tage",
+                  "name": "anmeldezeit - template bis 100 tage",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_anmeldezeit___template_bis_250_minuten",
+                  "path": "demo/geräte-auslastungen/anmeldezeit - template bis 250 minuten",
+                  "name": "anmeldezeit - template bis 250 minuten",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_befundzeit___angio_intervention",
+                  "path": "demo/geräte-auslastungen/befundzeit - angio-intervention",
+                  "name": "befundzeit - angio-intervention",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_befundzeit___angio_intervention__tage_",
+                  "path": "demo/geräte-auslastungen/befundzeit - angio-intervention (tage)",
+                  "name": "befundzeit - angio-intervention (tage)",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_befundzeit___template_bis_100_tage",
+                  "path": "demo/geräte-auslastungen/befundzeit - template bis 100 tage",
+                  "name": "befundzeit - template bis 100 tage",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_befundzeit___template_bis_250_minuten",
+                  "path": "demo/geräte-auslastungen/befundzeit - template bis 250 minuten",
+                  "name": "befundzeit - template bis 250 minuten",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_ger_tenutzungszeit___angio_intervention",
+                  "path": "demo/geräte-auslastungen/gerätenutzungszeit - angio-intervention",
+                  "name": "gerätenutzungszeit - angio-intervention",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_ger_tenutzungszeit___template_bis_250_minuten",
+                  "path": "demo/geräte-auslastungen/gerätenutzungszeit - template bis 250 minuten",
+                  "name": "gerätenutzungszeit - template bis 250 minuten",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_leerstandszeit___angio_intervention",
+                  "path": "demo/geräte-auslastungen/leerstandszeit - angio-intervention",
+                  "name": "leerstandszeit - angio-intervention",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_leerstandszeit___template_bis_250_minuten",
+                  "path": "demo/geräte-auslastungen/leerstandszeit - template bis 250 minuten",
+                  "name": "leerstandszeit - template bis 250 minuten",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_patientenwechselzeiten___alle",
+                  "path": "demo/geräte-auslastungen/patientenwechselzeiten - alle",
+                  "name": "patientenwechselzeiten - alle",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_patientenwechselzeiten___angio",
+                  "path": "demo/geräte-auslastungen/patientenwechselzeiten - angio",
+                  "name": "patientenwechselzeiten - angio",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_patientenwechselzeiten___template_bis_100_minuten",
+                  "path": "demo/geräte-auslastungen/patientenwechselzeiten - template bis 100 minuten",
+                  "name": "patientenwechselzeiten - template bis 100 minuten",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_patientenwechselzeiten___template_bis_250_minuten",
+                  "path": "demo/geräte-auslastungen/patientenwechselzeiten - template bis 250 minuten",
+                  "name": "patientenwechselzeiten - template bis 250 minuten",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_ger_te_auslastungen_taktzeiten",
+                  "path": "demo/geräte-auslastungen/taktzeiten",
+                  "name": "taktzeiten",
+                  "type": "PATIENTCASE"
+                }
+              ]
+            },
+            {
+              "id": "demo_leistungsbilder",
+              "path": "demo/leistungsbilder",
+              "name": "leistungsbilder",
+              "type": "FOLDER",
+              "open": false,
+              "data": [
+                {
+                  "id": "demo_leistungsbilder_alle",
+                  "path": "demo/leistungsbilder/alle",
+                  "name": "alle",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_leistungsbilder_a__station_r_",
+                  "path": "demo/leistungsbilder/a (stationär)",
+                  "name": "a (stationär)",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_leistungsbilder_b__ambulant_",
+                  "path": "demo/leistungsbilder/b (ambulant)",
+                  "name": "b (ambulant)",
+                  "type": "STATISTIC"
+                }
+              ]
+            },
+            {
+              "id": "demo_organregionen",
+              "path": "demo/organregionen",
+              "name": "organregionen",
+              "type": "STATISTIC"
+            },
+            {
+              "id": "demo_taktzeiten",
+              "path": "demo/taktzeiten",
+              "name": "taktzeiten",
+              "type": "FOLDER",
+              "open": false,
+              "data": [
+                {
+                  "id": "demo_taktzeiten_nach_dienst",
+                  "path": "demo/taktzeiten/nach dienst",
+                  "name": "nach dienst",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_taktzeiten_template_bis_100_minuten",
+                  "path": "demo/taktzeiten/template bis 100 minuten",
+                  "name": "template bis 100 minuten",
+                  "type": "STATISTIC"
+                }
+              ]
+            },
+            {
+              "id": "demo_turnaround_zeiten",
+              "path": "demo/turnaround-zeiten",
+              "name": "turnaround-zeiten",
+              "type": "FOLDER",
+              "open": false,
+              "data": [
+                {
+                  "id": "demo_turnaround_zeiten_gesamt",
+                  "path": "demo/turnaround-zeiten/gesamt",
+                  "name": "gesamt",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_turnaround_zeiten_gesamt___anforderung_bis_untersuchungsbeginn",
+                  "path": "demo/turnaround-zeiten/gesamt - anforderung bis untersuchungsbeginn",
+                  "name": "gesamt - anforderung bis untersuchungsbeginn",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_turnaround_zeiten_gesamt___untersuchungsende_bis_befundfreigabe",
+                  "path": "demo/turnaround-zeiten/gesamt - untersuchungsende bis befundfreigabe",
+                  "name": "gesamt - untersuchungsende bis befundfreigabe",
+                  "type": "STATISTIC"
+                },
+                {
+                  "id": "demo_turnaround_zeiten_station_re_termine_pro_station",
+                  "path": "demo/turnaround-zeiten/stationäre termine pro station",
+                  "name": "stationäre termine pro station",
+                  "type": "STATISTIC"
+                }
+              ]
+            },
+            {
+              "id": "demo_untersuchungen_pro_ger_t",
+              "path": "demo/untersuchungen pro gerät",
+              "name": "untersuchungen pro gerät",
+              "type": "STATISTIC"
+            },
+            {
+              "id": "demo_untersuchungen_pro_standort",
+              "path": "demo/untersuchungen pro standort",
+              "name": "untersuchungen pro standort",
+              "type": "STATISTIC"
+            }
+          ]
+        }
+      ]
+    }
+
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

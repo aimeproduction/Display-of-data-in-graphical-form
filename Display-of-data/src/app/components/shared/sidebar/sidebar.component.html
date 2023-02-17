@@ -1,0 +1,42 @@
+<html>
+<head><title></title></head>
+<body>
+<!-- Here we define all the elements of our menu. -->
+<mat-nav-list>
+  <div class="profile-card">
+    <!-- Here define and customize the first section(title Radiologie-Dashboard
+    and the  logo image of the university) of our menu. -->
+    <div class="header">
+      <h2>Patients-Dashboard</h2>
+    </div>
+    <img src="assets/image/logo.jpg" alt="Logo">
+  </div>
+  <!-- Here we define and customize the second section(Pages) of our menu -->
+  <mat-divider></mat-divider>
+  <h2 matSubheader>Pages</h2>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/queries">
+    <mat-icon>create</mat-icon>
+    Queries</a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/diagrams">
+    <mat-icon>timeline</mat-icon>
+    Diagrams</a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/dashboard">
+    <mat-icon>dashboard</mat-icon>
+    Dashboard</a>
+
+
+
+  <!-- Here we define and customize the third and last section(Others) of our menu -->
+  <mat-divider></mat-divider>
+  <h2 matSubheader>Others</h2>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/documentation">
+    <mat-icon>import_contacts</mat-icon>
+    Documentation
+  </a>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
+    <mat-icon>contact_phone</mat-icon>
+    Contacts
+  </a>
+</mat-nav-list>
+</body>
+</html>

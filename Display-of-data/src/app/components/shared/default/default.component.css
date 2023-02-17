@@ -1,0 +1,35 @@
+
+/*
+here we define everything related to the menu scrollbar
+ */
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+}
+
+/*
+Here we customize the mat-drawer, mat-drawer-container, and the mat-drawer-content.
+ */
+
+mat-drawer {
+  width: 250px;
+}
+
+mat-drawer-container {
+  height: 100%;
+  width: 300%;
+}
+
+
+#scroll{
+  direction:rtl;
+  overflow:auto;
+  height:50px;
+  width:50px;}
+
+#scroll div{
+  direction:ltr;
+}
+
