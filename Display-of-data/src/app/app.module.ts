@@ -17,7 +17,13 @@ import { DiagramsComponent } from './components/pages/diagrams/diagrams.componen
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { DocumentationComponent } from './components/others/documentation/documentation.component';
 import { ContactsComponent } from './components/others/contacts/contacts.component';
-
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
+import {MatTreeModule} from "@angular/material/tree";
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
+import {HttpClientModule} from "@angular/common/http";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +45,14 @@ import { ContactsComponent } from './components/others/contacts/contacts.compone
     MatListModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatTreeModule,
+    MatOptionModule,
+    MatSelectModule,
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
