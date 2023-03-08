@@ -19,7 +19,8 @@ mat-drawer {
 
 mat-drawer-container {
   height: 100%;
-  width: 300%;
+  width: auto;
+  background-color: white;
 }
 
 
@@ -27,9 +28,34 @@ mat-drawer-container {
   direction:rtl;
   overflow:auto;
   height:50px;
-  width:50px;}
+  width:50px;
+}
 
 #scroll div{
   direction:ltr;
 }
 
+.container {
+  width: 100%;
+  height: 100vh;
+}
+
+.toppane {
+  width: 100%;
+  height: 50px;
+}
+
+.leftpane {
+  width: 18%;
+  height: 100vh;
+  margin-top: 1.5%;
+
+}
+
+body {
+  margin: 0!important;
+}
+
+.d-flex {
+  display: flex;
+}
