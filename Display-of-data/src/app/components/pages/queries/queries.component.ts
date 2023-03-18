@@ -5,6 +5,7 @@ import {cityNode} from "../../../models/cityNode";
 import {DataGraphService} from "../../../service/data-graph.service";
 import {ExampleFlatNode} from "../../../models/example-flat-node";
 import {cityData} from "../../../models/cityData";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 
 @Component({
@@ -13,15 +14,20 @@ import {cityData} from "../../../models/cityData";
   styleUrls: ['./queries.component.css']
 })
 export class QueriesComponent implements OnInit {
-  SelectedColumnName!: string[];
-  SelectedColumnValue: number[] = [];
+  nodeName!: string;
+  colors = ['RED', 'GREEN', 'YELLOW', 'BLUE', 'PURPLE', 'BROWN'];
+  DiagramTyp = ['PIECHART', 'BARCHART', 'LINECHART', 'DOUGHNUTCHART'];
+  public form!: FormGroup;
+  hideElementConfiguration = false;
+  selectedLinesName!: string[];
+  selectedLinesValue!: string[];
   showDatatoDisplay = false;
   data!: cityData[];
   errorMessage!: string;
   showTree = true;
   checkColumn = false;
   showButtonforTree = false;
-  value!: number;
+  value!: string;
   private transformer = (node: cityNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -38,14 +44,20 @@ export class QueriesComponent implements OnInit {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(private service: DataGraphService) {
+  constructor(private service: DataGraphService, private fb: FormBuilder) {
 
   }
-
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ngOnInit(): void {
     this.getdata();
+    this.form = this.fb.group({
+      queryPath: [''],
+      selectedLinesValue: this.fb.array([]),
+      diagramType: ['', Validators.required],
+      title: ['', Validators.required],
+    });
+    this.selectedLinesValue = new Array<string>();
   }
 
   getdata() {
@@ -61,8 +73,21 @@ export class QueriesComponent implements OnInit {
       }
     })
   }
+  removeGroup(index: number) {
+    const form = this.form.get('selectedLinesValue') as FormArray;
+    form.removeAt(index);
+  }
+  addGroup(lineName: string) {
+    const val = this.fb.group({
+      lineName: [lineName],
+      lineColor: ['', Validators.required]
+    });
+    const form = this.form.get('selectedLinesValue') as FormArray;
+    form.push(val);
 
+  }
   userTreeChoice(name: string) {
+    this.nodeName = name;
     this.getCityData(name)
   }
 
@@ -71,6 +96,7 @@ export class QueriesComponent implements OnInit {
     this.showButtonforTree = !this.showButtonforTree;
     this.showDatatoDisplay = !this.showDatatoDisplay;
   }
+
 
   getCityData(name: string) {
     console.log(name)
@@ -85,18 +111,22 @@ export class QueriesComponent implements OnInit {
     })
   }
 
-  toggleEditableColumn(event: any, value: number) {
-    this.value= value;
+  toggleEditableColumn(event: any, value: number, domainName: string) {
+    this.value= domainName;
     if (event.target.checked) {
-      this.SelectedColumnValue.push(this.value);
-      this.SelectedColumnValue.forEach(x => console.log(x))
+      this.selectedLinesValue.push(this.value);
+      this.addGroup(domainName);
+      this.selectedLinesValue.forEach(x => console.log(x))
       }
     else{
-      this.SelectedColumnValue.pop()
-      this.SelectedColumnValue.forEach(x => console.log(x))
+      this.selectedLinesValue.pop()
+      const index = this.selectedLinesValue.indexOf(this.value)
+      this.removeGroup(index);
+      this.selectedLinesValue.forEach(x => console.log(x))
     }
-
-
   }
 
+  trackById(index: any, item: any) {
+    return index;
+  }
 }

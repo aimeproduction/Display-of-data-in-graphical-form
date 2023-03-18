@@ -43,79 +43,153 @@
     <table class="table1 table-hover table-sm table-bordered" *ngIf="data">
       <tr>
         <th>
-          Lastname
+          Zahnarzt-Abteilung
         </th>
         <th>
-          Birthday
+          Notfall-Abteilung
         </th>
         <th>
-          Street
+          Urologen-Abteilung
         </th>
         <th>
-          Post code
+          Augenartzt-Abteilung
         </th>
         <th>
-          City of residence
+          Chirug-Abteilung
         </th>
         <th>
-          Date of enrolment
+          Krebs-Abteilung
         </th>
         <th>
-          Birthday
+          Viren-Abteilung
         </th>
         <th>
-          Street
+          Tierartzt-Abteilung
         </th>
         <th>
-          Post code
+          Pneumologie-Abteilung
         </th>
         <th>
-          City of residence
-        </th>
-        <th>
-          Date of enrolment
+          Paediatrie-Abteilung
         </th>
 
       </tr>
       <tr *ngFor="let item of data">
         <td class="vertical-align ">{{item.Zahnarzt}}
-          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Zahnarzt)">
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Zahnarzt, 'Zahnarzt')">
         </td>
         <td class="vertical-align">{{item.Notfall}}
-          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Notfall)">
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Notfall, 'Notfall')">
         </td>
         <td class="vertical-align">{{item.Urologen}}
-          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Urologen)">
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Urologen, 'Urolgen')">
         </td>
         <td class="vertical-align ">{{item.Augenarzt}}
-          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Augenarzt)">
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Augenarzt, 'Augenarzt')">
         </td>
         <td class="vertical-align ">{{item.Chirug}}
-          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Chirug)">
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Chirug, 'Chirug')">
         </td>
         <td class="vertical-align ">{{item.Krebs}}
-          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Krebs)">
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Krebs, 'Krebs')">
         </td>
         <td class="vertical-align">{{item.Viren}}
-          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Viren)">
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Viren, 'Viren')">
         </td>
         <td class="vertical-align">{{item.Tierarzt}}
-          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Tierarzt)">
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Tierarzt, 'Tierarzt')">
         </td>
         <td class="vertical-align ">{{item.Pneumologie}}
-          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Pneumologie)">
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Pneumologie, 'Pneumologie')">
         </td>
         <td class="vertical-align ">{{item.Paediatrie}}
-          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Paediatrie)">
-        </td>
-        <td class="vertical-align ">{{item.Krebs}}
-          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Krebs)">
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Paediatrie, 'Paediatrie')">
         </td>
       </tr>
     </table>
   </div>
-    </div>
 
+
+  <br><br>
+  <div class="general1" *ngIf="selectedLinesValue.length>0">
+    <form class="ui container form" appearance="fill" [formGroup]="form">
+      <h1>Konfiguration des Diagramms:</h1><br>
+      <table class="DiagrammTemplate">
+        <tr>
+          <td class="tableforConfig">
+            Name der Abfrage:
+          </td>
+          <td class="tableforConfig">
+            {{nodeName}}
+          </td>
+        </tr>
+        <tr>
+          <td class="tableforConfig">
+            Diagrammtyp*
+          </td>
+          <td class="tableforConfig">
+            <mat-form-field appearance="fill">
+              <mat-label>Bitte auswählen</mat-label>
+              <mat-select formControlName="diagramType">
+                <mat-option *ngFor="let typ of DiagramTyp" [value]="typ">
+                  {{typ}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="tableforConfig">
+            Titel des Diagramms*
+          </td>
+          <td class="tableforConfig">
+            <mat-form-field appearance="fill">
+              <mat-label>Titel eingeben</mat-label>
+              <input matInput formControlName="title">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <div formArrayName="selectedLinesValue"
+           *ngFor="let time of form.controls.selectedLinesValue?.value; let i = index;  trackBy:trackById">
+        <div [formGroupName]="i">
+          <div class="field">
+            <div class="field">
+            </div>
+            <table class="forarrayline">
+              <tr>
+                <td class="tableforConfig">
+                  Name der Zeile:
+                </td>
+                <td class="tableforConfig">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Name der Zeile</mat-label>
+                    <input matInput formControlName="lineName"
+                           autocomplete="off">
+                    <mat-hint>Nicht ausfüllen!</mat-hint>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td class="tableforConfig">
+                  Farbe der Zeile*
+                </td>
+                <td>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Farbe Auswahl</mat-label>
+                    <mat-select formControlName="lineColor">
+                      <mat-option *ngFor="let color of colors" [value]="color">{{color}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+</div>
 
 
 
