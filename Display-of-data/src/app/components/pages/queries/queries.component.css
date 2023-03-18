@@ -23,3 +23,43 @@ p {
   text-align: justify;
   margin-right: 5%;
 }
+.treeButton{
+  margin-top: 3.5%;
+  margin-left: 2.5%;
+}
+mat-tree{
+  margin-left: 1%;
+}
+table{
+  margin-left: 3%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  box-shadow: 0 2px 15px rgba(64,64,64,.7);
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  margin-top: 15%;
+
+}
+td , th{
+  padding: 15px 5px;
+  text-align: center;
+  font-size: 12px;
+}
+
+th{
+  background-color: chocolate;
+  color: #fafafa;
+  font-family: 'Open Sans', Sans-serif, serif;
+  font-weight: 200;
+  text-transform: uppercase;
+
+}
+tr{
+  width: 50%;
+  background-color: #fafafa;
+  font-family: 'Montserrat', sans-serif;
+}
+tr:nth-child(even){
+  background-color: #eeeeee;
+}
+

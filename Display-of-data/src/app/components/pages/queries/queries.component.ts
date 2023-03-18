@@ -3,28 +3,25 @@ import {Component, OnInit} from '@angular/core';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {cityNode} from "../../../models/cityNode";
 import {DataGraphService} from "../../../service/data-graph.service";
+import {ExampleFlatNode} from "../../../models/example-flat-node";
+import {cityData} from "../../../models/cityData";
 
-/**
- * Food data with nested structure.
- * Each node has a name and an optiona list of children.
- */
-
-
-
-
-/** Flat node with expandable and level information */
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-}
 
 @Component({
   selector: 'app-queries',
   templateUrl: './queries.component.html',
   styleUrls: ['./queries.component.css']
 })
-export class QueriesComponent implements OnInit{
+export class QueriesComponent implements OnInit {
+  SelectedColumnName!: string[];
+  SelectedColumnValue: number[] = [];
+  showDatatoDisplay = false;
+  data!: cityData[];
+  errorMessage!: string;
+  showTree = true;
+  checkColumn = false;
+  showButtonforTree = false;
+  value!: number;
   private transformer = (node: cityNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -51,20 +48,55 @@ export class QueriesComponent implements OnInit{
     this.getdata();
   }
 
-  getdata(){
+  getdata() {
     this.service.getAllData().subscribe({
-      next:(data)=>{
+      next: (data) => {
         this.dataSource.data = data;
       },
-      error:()=>{
-
+      error: () => {
+        this.errorMessage = 'Sorry, es war leider nicht möglich die daten zu laden.'
       },
-      complete:()=>{
+      complete: () => {
 
       }
     })
   }
-  has(){
+
+  userTreeChoice(name: string) {
+    this.getCityData(name)
+  }
+
+  TreeShowControl() {
+    this.showTree = !this.showTree;
+    this.showButtonforTree = !this.showButtonforTree;
+    this.showDatatoDisplay = !this.showDatatoDisplay;
+  }
+
+  getCityData(name: string) {
+    console.log(name)
+    this.service.getCityDatabyName(name).subscribe({
+      next: (data) => {
+        this.data = data.filter(element => element.name == name)
+        console.log(this.data)
+      },
+      error: () => {
+        console.log('big error')
+      }
+    })
+  }
+
+  toggleEditableColumn(event: any, value: number) {
+    this.value= value;
+    if (event.target.checked) {
+      this.SelectedColumnValue.push(this.value);
+      this.SelectedColumnValue.forEach(x => console.log(x))
+      }
+    else{
+      this.SelectedColumnValue.pop()
+      this.SelectedColumnValue.forEach(x => console.log(x))
+    }
+
 
   }
+
 }

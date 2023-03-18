@@ -13,14 +13,14 @@
       und eine davon auszuwählen, um alle Informationen bezüglich dieser Anfrage
       in einer Tabelle anzuzeigen. Wenn Sie diese Informationen in einem Diagramm anzeigen lassen wollen, können Sie
       die Werte mit Hilfe der Kontrollkästchen auswählen. </p><br>
-    <div class="row">
-      <div class="col-6">
+
+      <div class="col-6" *ngIf="showTree">
         <p class="fehler"><strong> </strong></p>
         <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
           <!-- This is the tree node template for leaf nodes -->
           <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding="">
             <!-- use a disabled button to provide padding for tree leaf -->
-            <button mat-stroked-button color="primary" (click)="has()">{{node.name}}</button>
+            <button mat-stroked-button color="primary" (click)="userTreeChoice(node.name); TreeShowControl()">{{node.name}}</button>
           </mat-tree-node>
           <!-- This is the tree node template for expandable nodes -->
           <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding="">
@@ -33,10 +33,89 @@
             {{node.name}}
           </mat-tree-node>
         </mat-tree>
-
       </div>
-    </div>
+
+  <div class="treeButton" *ngIf="showButtonforTree">
+    <button mat-stroked-button color="primary" (click)="TreeShowControl()">Baum anzeigen</button>
   </div>
+
+  <div class="DatatoDisplay" *ngIf="showDatatoDisplay">
+    <table class="table1 table-hover table-sm table-bordered" *ngIf="data">
+      <tr>
+        <th>
+          Lastname
+        </th>
+        <th>
+          Birthday
+        </th>
+        <th>
+          Street
+        </th>
+        <th>
+          Post code
+        </th>
+        <th>
+          City of residence
+        </th>
+        <th>
+          Date of enrolment
+        </th>
+        <th>
+          Birthday
+        </th>
+        <th>
+          Street
+        </th>
+        <th>
+          Post code
+        </th>
+        <th>
+          City of residence
+        </th>
+        <th>
+          Date of enrolment
+        </th>
+
+      </tr>
+      <tr *ngFor="let item of data">
+        <td class="vertical-align ">{{item.Zahnarzt}}
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Zahnarzt)">
+        </td>
+        <td class="vertical-align">{{item.Notfall}}
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Notfall)">
+        </td>
+        <td class="vertical-align">{{item.Urologen}}
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Urologen)">
+        </td>
+        <td class="vertical-align ">{{item.Augenarzt}}
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Augenarzt)">
+        </td>
+        <td class="vertical-align ">{{item.Chirug}}
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Chirug)">
+        </td>
+        <td class="vertical-align ">{{item.Krebs}}
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Krebs)">
+        </td>
+        <td class="vertical-align">{{item.Viren}}
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Viren)">
+        </td>
+        <td class="vertical-align">{{item.Tierarzt}}
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Tierarzt)">
+        </td>
+        <td class="vertical-align ">{{item.Pneumologie}}
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Pneumologie)">
+        </td>
+        <td class="vertical-align ">{{item.Paediatrie}}
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Paediatrie)">
+        </td>
+        <td class="vertical-align ">{{item.Krebs}}
+          <input type='checkbox' [checked]="checkColumn" (change)="toggleEditableColumn($event, item.Krebs)">
+        </td>
+      </tr>
+    </table>
+  </div>
+    </div>
+
 
 
 
