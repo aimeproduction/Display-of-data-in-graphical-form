@@ -156,7 +156,7 @@
           <div class="field">
             <div class="field">
             </div>
-            <table class="forarrayline">
+            <table class="forarrayline" *ngIf="selectedLinesValue.length>0">
               <tr>
                 <td class="tableforConfig">
                   Name der Zeile:
@@ -174,7 +174,7 @@
                 <td class="tableforConfig">
                   Farbe der Zeile*
                 </td>
-                <td>
+                <td class="tableforConfig">
                   <mat-form-field appearance="outline">
                     <mat-label>Farbe Auswahl</mat-label>
                     <mat-select formControlName="lineColor">
@@ -187,6 +187,12 @@
           </div>
         </div>
       </div>
+      <mat-error *ngIf="!form.valid">
+      </mat-error>
+      <button class="storeData" mat-raised-button color="primary" [disabled]="!form.valid" (click)="onSubmit(this.form)">Vorlage
+        speichern
+      </button>
+      <p class="fehler"><strong> {{errorMessageSend}}</strong></p>
     </form>
     </div>
 </div>

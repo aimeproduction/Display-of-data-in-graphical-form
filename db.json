@@ -93,39 +93,36 @@
         }
       ]
     }
-    ],
-
-
-
+  ],
   "data": [
     {
-          "id": 1,
-          "name": "Karlsruhe",
-          "Zahnarzt": 50,
-          "Notfall": 50,
-          "Urologen": 50,
-          "Augenarzt": 50,
-          "Chirug": 50,
-          "Krebs": 50,
-          "Viren": 50,
-          "Tierarzt": 50,
-          "Pneumologie": 50,
-          "Paediatrie": 50
-        },
-        {
-          "id": 2,
-          "name": "Mannheim",
-              "Zahnarzt": 50,
-              "Notfall": 50,
-              "Urologen": 50,
-              "Augenarzt": 50,
-              "Chirug": 50,
-              "Krebs": 50,
-              "Viren": 50,
-              "Tierarzt": 50,
-              "Pneumologie": 50,
-              "Paediatrie": 50
-            },
+      "id": 1,
+      "name": "Karlsruhe",
+      "Zahnarzt": 50,
+      "Notfall": 50,
+      "Urologen": 50,
+      "Augenarzt": 50,
+      "Chirug": 50,
+      "Krebs": 50,
+      "Viren": 50,
+      "Tierarzt": 50,
+      "Pneumologie": 50,
+      "Paediatrie": 50
+    },
+    {
+      "id": 2,
+      "name": "Mannheim",
+      "Zahnarzt": 50,
+      "Notfall": 50,
+      "Urologen": 50,
+      "Augenarzt": 50,
+      "Chirug": 50,
+      "Krebs": 50,
+      "Viren": 50,
+      "Tierarzt": 50,
+      "Pneumologie": 50,
+      "Paediatrie": 50
+    },
     {
       "id": 3,
       "name": "Reutlingen",
@@ -168,13 +165,29 @@
       "Pneumologie": 50,
       "Paediatrie": 50
     }
-         ],
+  ],
 
-  "comments": [],
+
+
+
+  "diagramtemplate": [
+    {
+      "queryPath": "Karlsruhe",
+      "selectedLinesValue": [
+        {
+          "lineName": "Notfall",
+          "lineColor": "RED"
+        }
+      ],
+      "diagramType": "BARCHART",
+      "title": "fddsfs",
+      "id": 1
+    }
+  ],
+
+
+
   "profile": {
     "name": "typicode"
   }
-        }
-
-
-
+}

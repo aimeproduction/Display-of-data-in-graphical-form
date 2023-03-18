@@ -6,6 +6,7 @@ import {DataGraphService} from "../../../service/data-graph.service";
 import {ExampleFlatNode} from "../../../models/example-flat-node";
 import {cityData} from "../../../models/cityData";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -28,6 +29,7 @@ export class QueriesComponent implements OnInit {
   checkColumn = false;
   showButtonforTree = false;
   value!: string;
+  errorMessageSend = ''
   private transformer = (node: cityNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -44,22 +46,24 @@ export class QueriesComponent implements OnInit {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(private service: DataGraphService, private fb: FormBuilder) {
+  constructor(private service: DataGraphService, private fb: FormBuilder, private snackBar: MatSnackBar) {
 
   }
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ngOnInit(): void {
     this.getdata();
-    this.form = this.fb.group({
-      queryPath: [''],
-      selectedLinesValue: this.fb.array([]),
-      diagramType: ['', Validators.required],
-      title: ['', Validators.required],
-    });
-    this.selectedLinesValue = new Array<string>();
+this.formInitialization()
   }
-
+formInitialization(){
+  this.form = this.fb.group({
+    queryPath: [''],
+    selectedLinesValue: this.fb.array([]),
+    diagramType: ['', Validators.required],
+    title: ['', Validators.required],
+  });
+  this.selectedLinesValue = new Array<string>();
+}
   getdata() {
     this.service.getAllData().subscribe({
       next: (data) => {
@@ -95,12 +99,13 @@ export class QueriesComponent implements OnInit {
     this.showTree = !this.showTree;
     this.showButtonforTree = !this.showButtonforTree;
     this.showDatatoDisplay = !this.showDatatoDisplay;
+    this.tooglediagramConfigForm()
   }
 
 
   getCityData(name: string) {
     console.log(name)
-    this.service.getCityDatabyName(name).subscribe({
+    this.service.getCityDatabyName().subscribe({
       next: (data) => {
         this.data = data.filter(element => element.name == name)
         console.log(this.data)
@@ -116,7 +121,7 @@ export class QueriesComponent implements OnInit {
     if (event.target.checked) {
       this.selectedLinesValue.push(this.value);
       this.addGroup(domainName);
-      this.selectedLinesValue.forEach(x => console.log(x))
+      console.log(this.form.value)
       }
     else{
       this.selectedLinesValue.pop()
@@ -126,7 +131,37 @@ export class QueriesComponent implements OnInit {
     }
   }
 
-  trackById(index: any, item: any) {
+  tooglediagramConfigForm(){
+    this.formInitialization()
+
+    this.selectedLinesValue.forEach(x => {
+      console.log(x)
+    })
+    console.log(this.form.value)
+
+  }
+
+  trackById(index: any) {
     return index;
   }
-}
+
+  onSubmit(form: FormGroup) {
+    this.form.value.queryPath = this.nodeName;
+    this.service.postData(form).subscribe({
+      next: () => {
+        this.snackBar.open('Ihre Daten wurden erfolgreich gespeichert', 'Danke', {
+          duration: 5000,
+        })
+        form.reset();
+        this.errorMessageSend = '';
+      },
+
+      error: () => {
+        this.errorMessageSend = 'Ihre Daten konnten leider nicht gespeichert werden. Bitte prüfen Sie Ihre Daten und versuchen Sie noch einmal.'
+      },
+      complete: () => {
+
+      }
+    })
+  }
+  }
