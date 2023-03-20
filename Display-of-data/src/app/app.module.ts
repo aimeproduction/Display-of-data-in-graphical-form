@@ -24,6 +24,16 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { DiagramTemplateUpdateComponent } from './components/pages/diagrams/diagram-template-update/diagram-template-update.component';
+import { SelectedLineTemplateUpdateComponent } from './components/pages/diagrams/selected-line-template-update/selected-line-template-update.component';
+import { DiagramConfigurationforUpdateComponent } from './components/pages/diagrams/diagram-template-update/diagram-configurationfor-update/diagram-configurationfor-update.component';
+import { DiagramConfigurationforDeleteComponent } from './components/pages/diagrams/diagram-template-update/diagram-configurationfor-delete/diagram-configurationfor-delete.component';
+import { SelectedLineConfigurationforNewLineComponent } from './components/pages/diagrams/selected-line-template-update/selected-line-configurationfor-new-line/selected-line-configurationfor-new-line.component';
+import { SelectedLineConfigurationforUpdateComponent } from './components/pages/diagrams/selected-line-template-update/selected-line-configurationfor-update/selected-line-configurationfor-update.component';
+import { SelectedLineConfigurationforDeleteComponent } from './components/pages/diagrams/selected-line-template-update/selected-line-configurationfor-delete/selected-line-configurationfor-delete.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatDialogModule} from "@angular/material/dialog";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,25 +45,34 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     DiagramsComponent,
     DashboardComponent,
     DocumentationComponent,
-    ContactsComponent
+    ContactsComponent,
+    DiagramTemplateUpdateComponent,
+    SelectedLineTemplateUpdateComponent,
+    DiagramConfigurationforUpdateComponent,
+    DiagramConfigurationforDeleteComponent,
+    SelectedLineConfigurationforNewLineComponent,
+    SelectedLineConfigurationforUpdateComponent,
+    SelectedLineConfigurationforDeleteComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatTreeModule,
-    MatOptionModule,
-    MatSelectModule,
-    HttpClientModule,
-    MatSnackBarModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatListModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatTreeModule,
+        MatOptionModule,
+        MatSelectModule,
+        HttpClientModule,
+        MatSnackBarModule,
+        MatTooltipModule,
+        MatDialogModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

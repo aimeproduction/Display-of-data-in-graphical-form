@@ -1,9 +1,82 @@
 <html>
 <head><title></title>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <app-default></app-default>
+<div class="middlepane">
+<p>Hier werden alle gespeicherten Diagramme in einer Tabelle aufgelistet und es
+  besteht die Möglichkeit, die Vorlage jedes Diagramms bei Bedarf zu ändern
+  (Zum Beispiel eine neue Zeile hinzufügen, löschen oder bearbeiten).
+  Man kann entweder das gesamte Diagramm oder nur eine bestimmte Zeile bzw. Spalte
+  bearbeiten. Die neuen Werten werden gespeichert und das Diagramm aktualisiert.</p><br>
 
+
+
+  <form class="ui container form" appearance="fill" [formGroup]="formDiagram">
+    <table class="table table-hover table-sm table-bordered">
+      <thead class="text-center bg-light">
+      <tr>
+        <th>Titel des Diagramms</th>
+        <th>Typ des Diagrams</th>
+        <th>Diagram bearbeiten</th>
+        <th>Ausgewählte Zeile(n)</th>
+      </tr>
+
+      </thead>
+      <tbody class="text-center ">
+      <tr>
+        <td class="vertical-align"></td>
+        <td class="vertical-align"></td>
+        <td class="vertical-align ">
+          <mat-form-field appearance="fill">
+            <mat-label>Bearbeitung</mat-label>
+            <mat-select formControlName="valueToUpdate">
+              <mat-option *ngFor="let update of UpdateDiagram" [value]="update">{{update}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button color="primary">verwalten
+          </button>
+        </td>
+
+        <!-- Selected line Table  table table-hover -->
+        <td>
+          <table class="table table-hover table-sm table-bordered">
+            <thead>
+            <tr>
+              <th>Name der Zeile</th>
+              <th>Farbe der Zeile</th>
+              <th>Legende der Zeile</th>
+              <th>Zeile bearbeiten</th>
+            </tr>
+
+            </thead>
+            <tbody class="text-center ">
+            <tr>
+              <td class="vertical-align"></td>
+              <td class="vertical-align"></td>
+              <td class="vertical-align"></td>
+              <td class="vertical-align">
+                <button mat-icon-button matTooltip="bearbeiten" color="primary" aria-label="bearbeiten">
+                  <mat-icon>mode_edit_outline</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="löschen" color="warn" aria-label="löschen">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
 </body>
 </html>

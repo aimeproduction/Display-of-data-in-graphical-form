@@ -1,0 +1,39 @@
+.middlepane {
+  width: 80%;
+  height: 100vh;
+  margin-left: 20%;
+  margin-top: -43%;
+}
+
+.test{
+  float:left;
+  width:25%;
+}
+p {
+  letter-spacing: 1px;
+  word-spacing: 0.50em;
+  line-height: 25px;
+  margin-left: 27px;
+  margin-top: 2em;
+  align-content: center;
+  font-size: 15px;
+  text-align: justify;
+  margin-right: 5%;
+}
+
+.notshow{
+  visibility: collapse;
+}
+.table-sm{
+  width: 100%;
+  white-space: nowrap;
+  font-size: 13px;
+}
+.vertical-align {
+  vertical-align: middle;
+}
+.fehler{
+  color: blue;
+}
+
+
