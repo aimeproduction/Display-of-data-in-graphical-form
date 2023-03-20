@@ -10,14 +10,17 @@ import {
   DiagramConfigurationforDeleteComponent
 } from "./diagram-template-update/diagram-configurationfor-delete/diagram-configurationfor-delete.component";
 import {
-  SelectedLineConfigurationforNewLineComponent
-} from "./selected-line-template-update/selected-line-configurationfor-new-line/selected-line-configurationfor-new-line.component";
-import {
   SelectedLineConfigurationforUpdateComponent
 } from "./selected-line-template-update/selected-line-configurationfor-update/selected-line-configurationfor-update.component";
 import {
   SelectedLineConfigurationforDeleteComponent
 } from "./selected-line-template-update/selected-line-configurationfor-delete/selected-line-configurationfor-delete.component";
+import {DiagramTemplate} from "../../../models/diagram-template";
+import {DataGraphService} from "../../../service/data-graph.service";
+import {DiagramLineTemplate} from "../../../models/diagram-line-template";
+import {
+  DiagramConfigurationforNewLineComponent
+} from "./diagram-template-update/diagram-configurationfor-new-line/diagram-configurationfor-new-line.component";
 
 @Component({
   selector: 'app-diagrams',
@@ -25,78 +28,72 @@ import {
   styleUrls: ['./diagrams.component.css']
 })
 export class DiagramsComponent implements OnInit{
-  ResponseofTheTemplate: any;
-  alltableDatas = [];
-  UpdateDiagram = ['Diagramm bearbeiten', 'Diagramm löschen', 'neue Zeile', 'neue Spalte'];
-  UpdateColumn = ['Spalte bearbeiten', 'Spalte löschen'];
-  UpdateLine = ['Zeile bearbeiten', 'Zeile löschen'];
-  linearray = [];
-  columnarray = [];
+  alltableDatas!: DiagramTemplate [];
+  UpdateDiagram = ['Diagramm bearbeiten', 'Diagramm löschen', 'neue Zeile'];
+  linearray!: DiagramLineTemplate [];
   public formDiagram!: FormGroup;
   iddiagram!: number;
-  idline!: number;
-  idcolumn!: number;
+  lineName!: string;
   queryPath = '';
   diagramtyp ='';
   errorMessage = '';
+  valueUpdate =''
 
 
 
-
-  constructor(private  title: Title, private http: HttpClient, private fb: FormBuilder, public dialog: MatDialog) {
+  constructor(private  title: Title, private http: HttpClient, private service: DataGraphService, private fb: FormBuilder, public dialog: MatDialog) {
   }
 
 
 
   ngOnInit() {
-    this.onSubmit();
+    this.getTemplate();
     this.formDiagram = this.fb.group({
       valueToUpdate: [''],
     });
-    this.title.setTitle('PaDaWaN/Diagramme');
   }
 
 
 
-  onSubmit() {
-    const send = this.http.get('http://localhost:9090/RadiologieDashboard/api/diagramConfigurations');
-    send.subscribe((data => {
-        this.ResponseofTheTemplate = data;
 
-        this.alltableDatas = this.ResponseofTheTemplate._embedded.diagramConfigurationDtoList;
-/*        // tslint:disable-next-line:prefer-for-of
-        for (let i = 0; i < this.alltableDatas.length; i++) {
-          this.linearray = this.alltableDatas[i].selectedLines;
-          this.columnarray = this.alltableDatas[i].selectedColumns;
-        }*/
-      }),
-      () => {
+  getTemplate() {
+    this.service.getAllDiagramTemplate().subscribe({
+      next: (data) => {
+        this.alltableDatas = data;
+        for( let i=0; i< this.alltableDatas.length;i++) {
+          // @ts-ignore
+          this.linearray.push(this.alltableDatas[i].selectedLinesValue);
+        }
+      },
+      error: () => {
         this.errorMessage = 'Die Vorlagen der Diagrammen konnten leider nicht geladen werden. Bitte versuchen Sie noch einmal.'
-      });
+      }
+    })
   }
 
 
 
-  getvalueDiagram(iddiagram: number, valueUpdate: string, path: string, diagramtyp: string) {
-    this.queryPath = path;
-    this.iddiagram = iddiagram;
-    this.diagramtyp = diagramtyp;
-    if (valueUpdate === 'Diagramm bearbeiten') {
+  getvalueDiagram(item: DiagramTemplate, form: FormGroup) {
+    this.queryPath = item.queryPath;
+    this.iddiagram = item.id;
+    this.diagramtyp = item.diagramType;
+    this.valueUpdate = form.value.valueToUpdate;
+    if (this.valueUpdate === 'Diagramm bearbeiten') {
       this.errorMessage = '';
       this.dialog.open(DiagramConfigurationforUpdateComponent, {
         width: '800px', height: '1000px',
         data: {iddiagram: this.iddiagram}
 
       });
-    } else if (valueUpdate === 'Diagramm löschen') {
+    } else if (this.valueUpdate === 'Diagramm löschen') {
       this.errorMessage = '';
       this.dialog.open(DiagramConfigurationforDeleteComponent, {
         width: '600px',
         data: {iddiagram: this.iddiagram}
       });
-    } else if (valueUpdate === 'neue Zeile') {
+    } else if (this.valueUpdate === 'neue Zeile') {
       this.errorMessage = '';
-      this.dialog.open(SelectedLineConfigurationforNewLineComponent, {
+      this.dialog.open(DiagramConfigurationforNewLineComponent, {
         width: '800px',
         data: {iddiagram: this.iddiagram, queryPath: this.queryPath, diagramtyp: this.diagramtyp}
       });
@@ -108,21 +105,22 @@ export class DiagramsComponent implements OnInit{
 
 
 
-  getvalueLine(iddiagram: number, idligne: number, valueUpdateLine: string, path: string) {
+  getvalueLine(iddiagram: number, lineName: string, valueUpdateLine: string, path: string) {
     this.queryPath = path;
-    this.idline = idligne;
+    this.lineName = lineName;
     this.iddiagram = iddiagram;
     if (valueUpdateLine === 'Zeile bearbeiten') {
       this.errorMessage = '';
+      console.log(lineName)
       this.dialog.open(SelectedLineConfigurationforUpdateComponent, {
         width: '800px', height: '2000px',
-        data: {iddiagram: this.iddiagram, idligne: this.idline, queryPath: this.queryPath}
+        data: {iddiagram: this.iddiagram, lineName: this.lineName, queryPath: this.queryPath}
       });
     } else if (valueUpdateLine === 'Zeile löschen') {
       this.errorMessage = '';
       this.dialog.open(SelectedLineConfigurationforDeleteComponent, {
         width: '600px',
-        data: {idligne: this.idline, iddiagram: this.iddiagram}
+        data: {lineName: this.lineName, iddiagram: this.iddiagram}
       });
     } else {
       this.errorMessage = 'wir konnten leider nicht Ihre ausgewählte Operation finden.'

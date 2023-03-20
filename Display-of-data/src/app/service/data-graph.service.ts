@@ -15,8 +15,11 @@ data!: cityData[];
   getAllData(): Observable<cityNode[]>{
     return this.http.get<cityNode[]>("http://localhost:3000/treenode")
   }
-  getCityDatabyName(){
-    return this.http.get<cityData[]>("http://localhost:3000/data/")
+  getCityDatabyCityName(){
+    return this.http.get<cityData[]>("http://localhost:3000/data")
+  }
+  getAllDiagramTemplate(){
+    return this.http.get<DiagramTemplate[]>("http://localhost:3000/diagramtemplate")
   }
   postData(form: FormGroup): Observable<DiagramTemplate>{
     return this.http.post<DiagramTemplate>("http://localhost:3000/diagramtemplate", form.value);

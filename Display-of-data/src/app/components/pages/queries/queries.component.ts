@@ -105,7 +105,7 @@ formInitialization(){
 
   getCityData(name: string) {
     console.log(name)
-    this.service.getCityDatabyName().subscribe({
+    this.service.getCityDatabyCityName().subscribe({
       next: (data) => {
         this.data = data.filter(element => element.name == name)
         console.log(this.data)

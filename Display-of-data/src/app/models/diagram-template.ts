@@ -1,4 +1,5 @@
 export interface DiagramTemplate {
+  id: number
   title: string
   diagramType: string
   queryPath: string
