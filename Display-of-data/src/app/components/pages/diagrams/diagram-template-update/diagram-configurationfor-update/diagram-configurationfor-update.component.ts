@@ -1,10 +1,105 @@
-import { Component } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {DialogData} from "../../../../../models/dialog-data";
+import {HttpClient} from "@angular/common/http";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {DiagramTemplate} from "../../../../../models/diagram-template";
+import {DataGraphService} from "../../../../../service/data-graph.service";
+import {DiagramLineTemplate} from "../../../../../models/diagram-line-template";
 
 @Component({
   selector: 'app-diagram-configurationfor-update',
   templateUrl: './diagram-configurationfor-update.component.html',
   styleUrls: ['./diagram-configurationfor-update.component.css']
 })
-export class DiagramConfigurationforUpdateComponent {
+export class DiagramConfigurationforUpdateComponent implements OnInit{
+  thetitel!: string;
+  thediagramtyp!: string;
+  thepath!: string;
+  colors = ['RED', 'GREEN', 'YELLOW', 'BLUE', 'PURPLE', 'BROWN'];
+  DiagramTyp = ['PIECHART', 'BARCHART', 'LINECHART', 'DOUGHNUTCHART'];
+  public formDiagram!: FormGroup;
+  public formular!: FormGroup;
+  errorMessage = '';
+  alltableDatasLines!: [{ lineName: string; lineColor: string }];
+  alltableDatas!: DiagramTemplate
+  lineData!: { lineName: string; lineColor: string }
+
+  constructor(public dialogRef: MatDialogRef<DiagramConfigurationforUpdateComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: DialogData, private http: HttpClient, private fb: FormBuilder,
+              private _snackBar: MatSnackBar, private service: DataGraphService) {
+  }
+
+
+
+  ngOnInit() {
+    this.getTemplateID();
+    this.formDiagram = this.fb.group({
+      queryPath: [''],
+      selectedLines: this.fb.array([]),
+      selectedColumns: this.fb.array([]),
+      diagramType: [this.thediagramtyp],
+      title: [this.thetitel],
+    });
+
+
+
+    this.formular = this.fb.group({
+      idDiagram: [''],
+      idLine: [''],
+    });
+  }
+
+  ClickClose(): void {
+    this.dialogRef.close();
+  }
+
+  addGroupHead(title: string, diagramType: string, queryPath: string) {
+    const val = this.fb.group({
+      diagramType: [diagramType],
+      title: [title],
+      queryPath: [queryPath]
+    });
+  }
+
+
+
+
+  addGroupSelectedLine(lineName: string, lineColor: string) {
+    const val = this.fb.group({
+      lineName: [lineName],
+      lineColor: [lineColor, Validators.required],
+    });
+
+    const form = this.formDiagram.get('selectedLines') as FormArray;
+    form.push(val);
+  }
+
+  getTemplateID() {
+    this.service.getAllDiagramTemplatebyID(this.data.iddiagram).subscribe({
+      next: (data) => {
+        this.alltableDatas = data;
+        this.alltableDatasLines = this.alltableDatas.selectedLinesValue;
+        this.thetitel = this.alltableDatas.title;
+        this.thediagramtyp = this.alltableDatas.diagramType;
+        this.thepath = this.alltableDatas.queryPath;
+        for (let i = 0; i < this.alltableDatasLines.length; i++) {
+          this.addGroupSelectedLine(this.alltableDatasLines[i].lineName,
+            this.alltableDatasLines[i].lineColor);
+        }
+        this.addGroupHead(this.thetitel, this.thediagramtyp, this.thepath);
+        console.log(data)
+
+      },
+      error: () => {
+        this.errorMessage = 'Die Vorlagen der Diagrammen konnten leider nicht geladen werden. Bitte versuchen Sie noch einmal.'
+      }
+    })
+  }
+
+  trackByFn(index: any, item: any) {
+    return index;
+  }
 
 }
