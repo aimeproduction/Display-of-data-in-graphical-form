@@ -147,6 +147,7 @@ formInitialization(){
 
   onSubmit(form: FormGroup) {
     this.form.value.queryPath = this.nodeName;
+    console.log(this.form.value)
     this.service.postData(form).subscribe({
       next: () => {
         this.snackBar.open('Ihre Daten wurden erfolgreich gespeichert', 'Danke', {

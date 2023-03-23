@@ -1,1 +1,60 @@
-<p>diagram-configurationfor-delete works!</p>
+<html>
+<body>
+<div class="general">
+  <br>
+
+  <div class="diagram-config"><h4>Wollen Sie wirklich dieses Diagramm löschen?</h4><br>
+    <p class="fehler"><strong> {{errorMessageLoading}}</strong></p>
+    <table>
+      <tr>
+        <td>
+          Titel des Diagramms:
+        </td>
+        <td>
+          <strong> {{alltableDatas.title}}</strong>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          DiagrammTyp:
+        </td>
+        <td>
+          <strong> {{alltableDatas.diagramType}}</strong>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Name der Abfrage:
+        </td>
+        <td>
+          <strong>
+            {{alltableDatas.queryPath}}
+          </strong>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Anzahl der Zeile:
+        </td>
+        <td>
+          <strong> {{LineNumber}}</strong>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <button mat-raised-button color="warn" (click)="DeletebyId()">Diagramm löschen</button>
+        </td>
+        <td>
+          <button mat-raised-button color="primary" (click)="ClickClose()">Abbrechen</button>
+        </td>
+      </tr>
+    </table>
+
+
+    <p class="fehler"><strong>{{errorMessage}} </strong></p>
+  </div>
+
+</div>
+</body>
+</html>

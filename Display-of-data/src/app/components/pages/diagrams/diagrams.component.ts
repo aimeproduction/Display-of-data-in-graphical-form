@@ -81,14 +81,14 @@ export class DiagramsComponent implements OnInit{
     if (this.valueUpdate === 'Diagramm bearbeiten') {
       this.errorMessage = '';
       this.dialog.open(DiagramConfigurationforUpdateComponent, {
-        width: '800px', height: '1000px',
+        width: '500px', height: '550px',
         data: {iddiagram: this.iddiagram}
 
       });
     } else if (this.valueUpdate === 'Diagramm löschen') {
       this.errorMessage = '';
       this.dialog.open(DiagramConfigurationforDeleteComponent, {
-        width: '600px',
+        width: '600px', height: '550px',
         data: {iddiagram: this.iddiagram}
       });
     } else if (this.valueUpdate === 'neue Zeile') {

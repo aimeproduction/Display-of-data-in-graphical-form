@@ -1,9 +1,21 @@
 
-
+<h4>Bitte geben Sie die neuen Daten ein</h4>
   <div class="container">
     <form class="ui container form" appearance="fill" [formGroup]="formDiagram">
       <br><br><br>
       <table>
+        <tr>
+          <td>
+            Titel des Diagramms*
+          </td>
+
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-label>Titel eingeben</mat-label>
+              <input matInput formControlName="title" [(ngModel)]="thetitel">
+            </mat-form-field>
+          </td>
+        </tr>
         <tr>
           <td>
             Diagrammtyp*
@@ -19,60 +31,21 @@
         </tr>
         <tr>
           <td>
-            Titel des Diagramms*
+            Path
           </td>
           <td>
             <mat-form-field appearance="fill">
-              <mat-label>Titel eingeben</mat-label>
-              <input matInput formControlName="title" [(ngModel)]="thetitel">
+              <mat-label>Name der Abfrage</mat-label>
+              <input matInput formControlName="queryPath" [value]="thepath"
+                     readonly>
+              <mat-hint>Nicht auszufüllen!</mat-hint>
             </mat-form-field>
           </td>
         </tr>
       </table>
-      <div formArrayName="selectedLines"
-           *ngFor="let line of alltableDatasLines; let i = index; trackBy:trackByFn">
-        <div [formGroupName]="i">
-          <h3> Ausgewählte Zeile Konfiguration {{i}}</h3>
-
-          <table class="forarrayline">
-            <tr>
-              <td>
-                Name der Zeile:
-              </td>
-              <td>
-                <mat-form-field appearance="outline">
-                  <mat-label>Name der Zeile</mat-label>
-                  <input matInput
-                         formControlName="lineName"
-                         autocomplete="off">
-                  <mat-hint>Nicht ausfüllen!</mat-hint>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Farbe der Zeile*
-              </td>
-              <td>
-                <mat-form-field appearance="fill">
-                  <mat-label>Farbe Auswahl</mat-label>
-                  <mat-select formControlName="lineColor">
-                    <mat-option *ngFor="let color of colors" [value]="color">{{color}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <br/>
-
-
-      <br><br>
-
-
+<br><br>
+      <button class="BtnSubmit" mat-raised-button color="warn" (click)="onSubmit()">Daten ändern</button>
+      <button class="BtnCancel" mat-raised-button color="primary" (click)="ClickClose()">Abbrechen</button>
+      <p class="fehler"><strong>{{errorMessage}}</strong></p>
     </form>
-    <button mat-raised-button color="warn" >Daten ändern</button>
-    <button mat-raised-button color="primary" >Abbrechen</button>
-    <p class="fehler"><strong>{{errorMessage}}</strong></p>
   </div>

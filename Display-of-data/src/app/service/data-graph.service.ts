@@ -25,7 +25,13 @@ data!: cityData[];
   getAllDiagramTemplatebyID(id: number){
     return this.http.get<DiagramTemplate>("http://localhost:3000/diagramtemplate/" + id)
   }
-  postData(form: FormGroup): Observable<DiagramTemplate>{
+  postData(form: FormGroup){
     return this.http.post<DiagramTemplate>("http://localhost:3000/diagramtemplate", form.value);
+  }
+  updateDiagramTemplate(id: number, form: FormGroup){
+    return this.http.put<DiagramTemplate>("http://localhost:3000/diagramtemplate/"+id, form.value);
+  }
+  deleteDiagramTemplate(id: number){
+    return this.http.delete<DiagramTemplate>("http://localhost:3000/diagramtemplate/"+id);
   }
 }

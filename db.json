@@ -166,48 +166,20 @@
       "Paediatrie": 50
     }
   ],
-
-
-
-
   "diagramtemplate": [
     {
       "queryPath": "Karlsruhe",
       "selectedLinesValue": [
         {
-          "lineName": "Notfall",
-          "lineColor": "RED"
-        },
-        {
-          "lineName": "Zahnarzt",
-          "lineColor": "BLACK"
+          "lineName": "Urolgen",
+          "lineColor": "BLUE"
         }
       ],
-      "diagramType": "BARCHART",
-      "title": "fddsfs",
-      "id": 1
-    },
-
-    {
-      "queryPath": "Hallo",
-      "selectedLinesValue": [
-        {
-          "lineName": "test",
-          "lineColor": "RED"
-        },
-        {
-          "lineName": "test",
-          "lineColor": "BLACK"
-        }
-      ],
-      "diagramType": "BARCHART",
-      "title": "fddsfs",
-      "id": 2
+      "diagramType": "PIECHART",
+      "title": "mike",
+      "id": 3
     }
   ],
-
-
-
   "profile": {
     "name": "typicode"
   }

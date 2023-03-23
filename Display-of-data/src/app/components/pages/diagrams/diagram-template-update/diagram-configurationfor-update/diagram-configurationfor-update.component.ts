@@ -37,10 +37,10 @@ export class DiagramConfigurationforUpdateComponent implements OnInit{
     this.getTemplateID();
     this.formDiagram = this.fb.group({
       queryPath: [''],
-      selectedLines: this.fb.array([]),
-      selectedColumns: this.fb.array([]),
+      selectedLinesValue: this.fb.array([]),
       diagramType: [this.thediagramtyp],
       title: [this.thetitel],
+      id: [''],
     });
 
 
@@ -72,7 +72,7 @@ export class DiagramConfigurationforUpdateComponent implements OnInit{
       lineColor: [lineColor, Validators.required],
     });
 
-    const form = this.formDiagram.get('selectedLines') as FormArray;
+    const form = this.formDiagram.get('selectedLinesValue') as FormArray;
     form.push(val);
   }
 
@@ -94,6 +94,31 @@ export class DiagramConfigurationforUpdateComponent implements OnInit{
       },
       error: () => {
         this.errorMessage = 'Die Vorlagen der Diagrammen konnten leider nicht geladen werden. Bitte versuchen Sie noch einmal.'
+      }
+    })
+  }
+
+  onSubmit() {
+    this.formDiagram.value.queryPath = this.thepath;
+    this.formDiagram.value.id = this.data.iddiagram;
+    console.log(this.data.iddiagram)
+    console.log(this.formDiagram.value)
+    this.service.updateDiagramTemplate(this.data.iddiagram, this.formDiagram).subscribe({
+      next: () => {
+        this.errorMessage = '';
+        this._snackBar.open('Das Diagramm wurde erfolgreich geändert', 'Danke', {
+          duration: 5000,
+        })
+        this.errorMessage = '';
+        this.formDiagram.reset();
+        this.ClickClose();
+      },
+      error: () => {
+        this.errorMessage = 'Es war leider nicht möglich Ihre Abfrage an den Server zu schicken. Bitte prüfen Sie ' +
+          'Ihre Daten und die Verbindung mit dem Server.'
+      },
+      complete: () => {
+
       }
     })
   }

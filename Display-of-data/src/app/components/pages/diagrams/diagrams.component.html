@@ -21,6 +21,7 @@
       <tr>
         <th>Titel des Diagramms</th>
         <th>Typ des Diagrams</th>
+        <th>Abfagre</th>
         <th>Diagram bearbeiten</th>
         <th>Ausgewählte Zeile(n)</th>
       </tr>
@@ -30,6 +31,7 @@
       <tr *ngFor="let item of alltableDatas">
         <td class="vertical-align">{{item.title}}</td>
         <td class="vertical-align">{{item.diagramType}}</td>
+        <td class="vertical-align">{{item.queryPath}}</td>
         <td class="vertical-align ">
           <mat-form-field appearance="fill">
             <mat-label>Bearbeitung</mat-label>
