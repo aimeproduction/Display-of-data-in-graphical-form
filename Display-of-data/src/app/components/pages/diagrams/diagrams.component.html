@@ -65,7 +65,8 @@
                         (click)="getvalueLine(item.id, line.lineName, 'Zeile bearbeiten', item.queryPath)">
                   <mat-icon>mode_edit_outline</mat-icon>
                 </button>
-                <button mat-icon-button matTooltip="löschen" color="warn" aria-label="löschen">
+                <button mat-icon-button matTooltip="löschen" color="warn" aria-label="löschen"
+                        (click)="getvalueLine(item.id, line.lineName, 'Zeile löschen', item.queryPath)">
                   <mat-icon>delete</mat-icon>
                 </button>
               </td>

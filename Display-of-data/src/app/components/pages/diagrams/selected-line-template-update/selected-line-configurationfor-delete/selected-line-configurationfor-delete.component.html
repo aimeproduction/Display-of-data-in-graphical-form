@@ -1,1 +1,51 @@
-<p>selected-line-configurationfor-delete works!</p>
+<html>
+<body>
+<div class="general">
+  <br>
+
+  <div class="diagram-config"><h4>Wollen Sie wirklich diese Zeile löschen?</h4><br>
+    <p class="fehler"><strong> {{errorMessageLoading}}</strong></p>
+    <table>
+      <tr>
+        <td>
+          Name der Zeile:
+        </td>
+        <td>
+          <strong> {{lineName}}</strong>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Farbe der Zeile:
+        </td>
+        <td>
+          <strong>
+            {{lineColor}}
+          </strong>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Vom Diagramm:
+        </td>
+        <td>
+          <strong> {{diagramName}}</strong>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button mat-raised-button color="warn" (click)="DeleteLine()">Zeile löschen</button>
+        </td>
+        <td>
+          <button mat-raised-button color="primary" (click)="ClickClose()">Abbrechen</button>
+        </td>
+      </tr>
+    </table>
+
+
+    <p class="fehler"><strong>{{errorMessage}} </strong></p>
+  </div>
+
+</div>
+</body>
+</html>

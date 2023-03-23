@@ -24,8 +24,6 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import { DiagramTemplateUpdateComponent } from './components/pages/diagrams/diagram-template-update/diagram-template-update.component';
-import { SelectedLineTemplateUpdateComponent } from './components/pages/diagrams/selected-line-template-update/selected-line-template-update.component';
 import { DiagramConfigurationforUpdateComponent } from './components/pages/diagrams/diagram-template-update/diagram-configurationfor-update/diagram-configurationfor-update.component';
 import { DiagramConfigurationforDeleteComponent } from './components/pages/diagrams/diagram-template-update/diagram-configurationfor-delete/diagram-configurationfor-delete.component';
 import { SelectedLineConfigurationforUpdateComponent } from './components/pages/diagrams/selected-line-template-update/selected-line-configurationfor-update/selected-line-configurationfor-update.component';
@@ -46,14 +44,13 @@ import { DiagramConfigurationforNewLineComponent } from './components/pages/diag
     DashboardComponent,
     DocumentationComponent,
     ContactsComponent,
-    DiagramTemplateUpdateComponent,
-    SelectedLineTemplateUpdateComponent,
     DiagramConfigurationforUpdateComponent,
     DiagramConfigurationforDeleteComponent,
     SelectedLineConfigurationforUpdateComponent,
     SelectedLineConfigurationforDeleteComponent,
     DiagramConfigurationforNewLineComponent
   ],
+
     imports: [
         BrowserModule,
         AppRoutingModule,

@@ -15,13 +15,15 @@ import {DiagramTemplate} from "../../../../../models/diagram-template";
 })
 export class SelectedLineConfigurationforUpdateComponent implements OnInit{
 
-  public form!: FormGroup;
-  public formular!: FormGroup;
+  alltableDatas!: DiagramTemplate;
   errorMessage = '';
-  TheLineName = '';
-  theLineColor = '';
-  alltableDatas!: DiagramTemplate[]
-  lineData!: { lineName: string; lineColor: string }
+  errorMessageLoading = '';
+  diagramName!: string;
+  formDiagram!: FormGroup;
+  lineName!: string;
+  lineColor!: string;
+  lineData!: { lineName: string; lineColor: string };
+
 
   constructor(public dialogRef: MatDialogRef<SelectedLineConfigurationforUpdateComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData, private http: HttpClient, private fb: FormBuilder,
@@ -29,34 +31,54 @@ export class SelectedLineConfigurationforUpdateComponent implements OnInit{
   }
 
 
-
-  ngOnInit() {
-    this.getTemplate();
-    this.form = this.fb.group({
-      linePosition: [],
-      lineName: [this.TheLineName, Validators.required],
-      lineColor: [this.theLineColor, Validators.required],
-    });
-
-
-
-    this.formular = this.fb.group({
-      idDiagram: [''],
-      idLine: [''],
+  ngOnInit(): void {
+    this.getTemplateID();
+    this.formDiagram = this.fb.group({
+      queryPath: [''],
+      selectedLinesValue: this.fb.array([]),
+      diagramType: [''],
+      title: [''],
+      id: [''],
     });
   }
 
 
-  getTemplate() {
-    this.service.getAllDiagramTemplate().subscribe({
+  DeleteLine() {
+    this.formDiagram.value.title = this.alltableDatas.title;
+    this.formDiagram.value.queryPath = this.alltableDatas.queryPath;
+    this.formDiagram.value.diagramType = this.alltableDatas.diagramType;
+    this.formDiagram.value.id = this.alltableDatas.id;
+    this.formDiagram.value.selectedLinesValue.push(this.alltableDatas.selectedLinesValue);
+    this.service.deleteLinefromDiagramTemplate(this.data.iddiagram, this.formDiagram).subscribe({
+      next: () => {
+        this.errorMessage = '';
+        this._snackBar.open('Das Diagramm wurde erfolgreich geändert', 'Danke', {
+          duration: 5000,
+        })
+        this.errorMessage = '';
+        this.ClickClose();
+      },
+      error: () => {
+        this.errorMessage = 'Es war leider nicht möglich Ihre Abfrage an den Server zu schicken. Bitte prüfen Sie ' +
+          'Ihre Daten und die Verbindung mit dem Server.'
+      },
+      complete: () => {
+
+      }
+    })
+  }
+
+
+  getTemplateID() {
+    this.service.getAllDiagramTemplatebyID(this.data.iddiagram).subscribe({
       next: (data) => {
         this.alltableDatas = data;
-        for( let i=0; i< this.alltableDatas.length;i++) {
-          for( let j=0; j< this.alltableDatas[i].selectedLinesValue.length;j++) {
-            if (this.alltableDatas[i].selectedLinesValue[j].lineName == this.data.lineName) {
-              this.lineData = this.alltableDatas[i].selectedLinesValue[i];
-              console.log(this.lineData)
-            }
+        this.diagramName = this.alltableDatas.title;
+        for( let i=0; i< this.alltableDatas.selectedLinesValue.length;i++) {
+          if(this.alltableDatas.selectedLinesValue[i].lineName == this.data.lineName){
+            this.lineData = this.alltableDatas.selectedLinesValue[i];
+            this.lineName = this.lineData.lineName;
+            this.lineColor= this.lineData.lineColor;
           }
         }
       },
@@ -64,5 +86,10 @@ export class SelectedLineConfigurationforUpdateComponent implements OnInit{
         this.errorMessage = 'Die Vorlagen der Diagrammen konnten leider nicht geladen werden. Bitte versuchen Sie noch einmal.'
       }
     })
+  }
+
+
+  ClickClose(): void {
+    this.dialogRef.close();
   }
 }

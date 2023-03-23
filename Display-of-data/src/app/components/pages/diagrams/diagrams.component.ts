@@ -83,19 +83,24 @@ export class DiagramsComponent implements OnInit{
       this.dialog.open(DiagramConfigurationforUpdateComponent, {
         width: '500px', height: '550px',
         data: {iddiagram: this.iddiagram}
-
+      }).afterClosed().subscribe(()=> {
+        this.getTemplate();
       });
     } else if (this.valueUpdate === 'Diagramm löschen') {
       this.errorMessage = '';
       this.dialog.open(DiagramConfigurationforDeleteComponent, {
         width: '600px', height: '550px',
         data: {iddiagram: this.iddiagram}
+      }).afterClosed().subscribe(()=> {
+        this.getTemplate();
       });
     } else if (this.valueUpdate === 'neue Zeile') {
       this.errorMessage = '';
       this.dialog.open(DiagramConfigurationforNewLineComponent, {
         width: '800px',
         data: {iddiagram: this.iddiagram, queryPath: this.queryPath, diagramtyp: this.diagramtyp}
+      }).afterClosed().subscribe(()=> {
+        this.getTemplate();
       });
     }
     else {
@@ -115,12 +120,16 @@ export class DiagramsComponent implements OnInit{
       this.dialog.open(SelectedLineConfigurationforUpdateComponent, {
         width: '800px', height: '2000px',
         data: {iddiagram: this.iddiagram, lineName: this.lineName, queryPath: this.queryPath}
+      }).afterClosed().subscribe(()=> {
+        this.getTemplate();
       });
     } else if (valueUpdateLine === 'Zeile löschen') {
       this.errorMessage = '';
       this.dialog.open(SelectedLineConfigurationforDeleteComponent, {
         width: '600px',
         data: {lineName: this.lineName, iddiagram: this.iddiagram}
+      }).afterClosed().subscribe(()=> {
+        this.getTemplate();
       });
     } else {
       this.errorMessage = 'wir konnten leider nicht Ihre ausgewählte Operation finden.'

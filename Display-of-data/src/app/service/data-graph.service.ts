@@ -34,4 +34,7 @@ data!: cityData[];
   deleteDiagramTemplate(id: number){
     return this.http.delete<DiagramTemplate>("http://localhost:3000/diagramtemplate/"+id);
   }
+  deleteLinefromDiagramTemplate(id: number, form: FormGroup){
+    return this.http.put<DiagramTemplate>("http://localhost:3000/diagramtemplate/"+id, form.value);
+  }
 }
