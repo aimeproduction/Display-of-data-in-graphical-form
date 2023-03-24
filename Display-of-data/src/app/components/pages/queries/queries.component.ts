@@ -16,7 +16,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class QueriesComponent implements OnInit {
   nodeName!: string;
-  colors = ['RED', 'GREEN', 'YELLOW', 'BLUE', 'PURPLE', 'BROWN'];
+  colors = ['RED', 'GREEN', 'YELLOW', 'BLUE', 'PURPLE', 'BROWN', 'PINK', 'GRAY', 'ORANGE','BLACK'];
   DiagramTyp = ['PIECHART', 'BARCHART', 'LINECHART', 'DOUGHNUTCHART'];
   public form!: FormGroup;
   hideElementConfiguration = false;

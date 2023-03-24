@@ -30,7 +30,7 @@ import {
 export class DiagramsComponent implements OnInit{
   alltableDatas!: DiagramTemplate [];
   UpdateDiagram = ['Diagramm bearbeiten', 'Diagramm löschen', 'neue Zeile'];
-  linearray!: DiagramLineTemplate [];
+  linearray: DiagramLineTemplate [] = [];
   public formDiagram!: FormGroup;
   iddiagram!: number;
   lineName!: string;
@@ -97,7 +97,7 @@ export class DiagramsComponent implements OnInit{
     } else if (this.valueUpdate === 'neue Zeile') {
       this.errorMessage = '';
       this.dialog.open(DiagramConfigurationforNewLineComponent, {
-        width: '800px',
+        width: '600px', height: '500px',
         data: {iddiagram: this.iddiagram, queryPath: this.queryPath, diagramtyp: this.diagramtyp}
       }).afterClosed().subscribe(()=> {
         this.getTemplate();
@@ -118,7 +118,7 @@ export class DiagramsComponent implements OnInit{
       this.errorMessage = '';
       console.log(lineName)
       this.dialog.open(SelectedLineConfigurationforUpdateComponent, {
-        width: '800px', height: '2000px',
+        width: '600px', height: '500px',
         data: {iddiagram: this.iddiagram, lineName: this.lineName, queryPath: this.queryPath}
       }).afterClosed().subscribe(()=> {
         this.getTemplate();

@@ -17,7 +17,7 @@ export class DiagramConfigurationforUpdateComponent implements OnInit{
   thetitel!: string;
   thediagramtyp!: string;
   thepath!: string;
-  colors = ['RED', 'GREEN', 'YELLOW', 'BLUE', 'PURPLE', 'BROWN'];
+  colors = ['RED', 'GREEN', 'YELLOW', 'BLUE', 'PURPLE', 'BROWN', 'PINK', 'GRAY', 'ORANGE','BLACK'];
   DiagramTyp = ['PIECHART', 'BARCHART', 'LINECHART', 'DOUGHNUTCHART'];
   public formDiagram!: FormGroup;
   public formular!: FormGroup;

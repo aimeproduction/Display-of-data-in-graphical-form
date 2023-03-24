@@ -1,1 +1,55 @@
-<p>selected-line-configurationfor-update works!</p>
+<html>
+<body>
+<div class="general">
+  <br>
+
+  <div class="diagram-config">
+    <h3>Neue Daten für die Zeile:</h3>
+    <div class="container">
+      <form class="ui container form" appearance="fill" [formGroup]="form">
+    <p class="fehler"><strong> {{errorMessageLoading}}</strong></p>
+    <table>
+      <tr>
+        <td>
+          Name der Zeile:
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <mat-select formControlName="lineName" [(ngModel)]="lineName">
+              <mat-option *ngFor="let line of freeLine" [value]="line">{{line}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Farbe der Zeile:
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Farbe Auswahl</mat-label>
+            <mat-select formControlName="lineColor" [(ngModel)]="lineColor">
+              <mat-option *ngFor="let color of arrayColor" [value]="color">{{color}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button mat-raised-button color="warn" (click)="updateLine()">Daten ändern</button>
+        </td>
+        <td>
+          <button mat-raised-button color="primary" (click)="ClickClose()">Abbrechen</button>
+        </td>
+      </tr>
+    </table>
+      </form>
+    </div>
+
+    <p class="fehler"><strong>{{errorMessage}} </strong></p>
+  </div>
+
+</div>
+</body>
+</html>

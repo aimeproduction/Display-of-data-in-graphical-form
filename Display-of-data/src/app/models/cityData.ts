@@ -11,5 +11,4 @@ export interface cityData {
       "Tierarzt" : number,
       "Pneumologie" : number,
       "Paediatrie" : number
-
 }

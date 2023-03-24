@@ -1,0 +1,14 @@
+.fehler{
+  color: red;
+}
+h3{
+  margin-left: 21%;
+  margin-top: 5%;
+  color: blue;
+}
+table{
+  margin-left: 10%;
+  font-size: 20px;
+  border-collapse: separate;
+  border-spacing: 2em;
+}

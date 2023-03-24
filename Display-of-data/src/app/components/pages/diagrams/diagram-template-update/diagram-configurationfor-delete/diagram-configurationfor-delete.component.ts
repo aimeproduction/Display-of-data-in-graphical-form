@@ -20,7 +20,6 @@ export class DiagramConfigurationforDeleteComponent implements OnInit{
   LineNumber = 0;
 
 
-
   constructor(public dialogRef: MatDialogRef<DiagramConfigurationforDeleteComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData, private http: HttpClient, private fb: FormBuilder,
               private _snackBar: MatSnackBar, private service: DataGraphService) {

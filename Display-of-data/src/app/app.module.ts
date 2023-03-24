@@ -17,7 +17,7 @@ import { DiagramsComponent } from './components/pages/diagrams/diagrams.componen
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { DocumentationComponent } from './components/others/documentation/documentation.component';
 import { ContactsComponent } from './components/others/contacts/contacts.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatTreeModule} from "@angular/material/tree";
 import {MatOptionModule} from "@angular/material/core";
@@ -68,7 +68,8 @@ import { DiagramConfigurationforNewLineComponent } from './components/pages/diag
         HttpClientModule,
         MatSnackBarModule,
         MatTooltipModule,
-        MatDialogModule
+        MatDialogModule,
+        FormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
