@@ -6,7 +6,6 @@ import {HttpClient} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DiagramTemplate} from "../../../../../models/diagram-template";
 import {DataGraphService} from "../../../../../service/data-graph.service";
-import {DiagramLineTemplate} from "../../../../../models/diagram-line-template";
 
 @Component({
   selector: 'app-diagram-configurationfor-update',
@@ -24,7 +23,7 @@ export class DiagramConfigurationforUpdateComponent implements OnInit{
   errorMessage = '';
   alltableDatasLines!: [{ lineName: string; lineColor: string }];
   alltableDatas!: DiagramTemplate
-  lineData!: { lineName: string; lineColor: string }
+
 
   constructor(public dialogRef: MatDialogRef<DiagramConfigurationforUpdateComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData, private http: HttpClient, private fb: FormBuilder,
@@ -56,7 +55,7 @@ export class DiagramConfigurationforUpdateComponent implements OnInit{
   }
 
   addGroupHead(title: string, diagramType: string, queryPath: string) {
-    const val = this.fb.group({
+    this.fb.group({
       diagramType: [diagramType],
       title: [title],
       queryPath: [queryPath]
@@ -121,10 +120,6 @@ export class DiagramConfigurationforUpdateComponent implements OnInit{
 
       }
     })
-  }
-
-  trackByFn(index: any, item: any) {
-    return index;
   }
 
 }

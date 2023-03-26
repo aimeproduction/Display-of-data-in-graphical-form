@@ -2,12 +2,10 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {HttpClient} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {DialogData} from "../../../../../models/dialog-data";
 import {DataGraphService} from "../../../../../service/data-graph.service";
 import {DiagramTemplate} from "../../../../../models/diagram-template";
-import {DiagramLineTemplate} from "../../../../../models/diagram-line-template";
-import {cityData} from "../../../../../models/cityData";
 import {CityName} from "../../../../../models/city-name";
 
 
@@ -153,6 +151,9 @@ export class SelectedLineConfigurationforUpdateComponent implements OnInit{
       },
       error: () => {
         console.log('big error')
+      },
+      complete:() =>{
+
       }
     })
   }
@@ -160,7 +161,6 @@ export class SelectedLineConfigurationforUpdateComponent implements OnInit{
     for(let i=0; i< lineArray.length; i++){
       this.linearray.push(lineArray[i].lineName)
     }
-console.log(this.linearray)
   }
 
 

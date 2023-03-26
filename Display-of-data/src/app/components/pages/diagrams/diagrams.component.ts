@@ -55,7 +55,6 @@ export class DiagramsComponent implements OnInit{
 
 
 
-
   getTemplate() {
     this.service.getAllDiagramTemplate().subscribe({
       next: (data) => {
@@ -73,10 +72,10 @@ export class DiagramsComponent implements OnInit{
 
 
 
-  getvalueDiagram(item: DiagramTemplate, form: FormGroup) {
-    this.queryPath = item.queryPath;
-    this.iddiagram = item.id;
-    this.diagramtyp = item.diagramType;
+  getvalueDiagram(iddiagram: number, path: string, diagramtyp: string, form: FormGroup) {
+    this.queryPath = path;
+    this.iddiagram = iddiagram;
+    this.diagramtyp = diagramtyp;
     this.valueUpdate = form.value.valueToUpdate;
     if (this.valueUpdate === 'Diagramm bearbeiten') {
       this.errorMessage = '';
@@ -136,4 +135,7 @@ export class DiagramsComponent implements OnInit{
     }
   }
 
+  trackById(index: any) {
+    return index;
+  }
 }

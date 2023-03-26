@@ -9,6 +9,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 
+
 @Component({
   selector: 'app-queries',
   templateUrl: './queries.component.html',
@@ -16,11 +17,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class QueriesComponent implements OnInit {
   nodeName!: string;
-  colors = ['RED', 'GREEN', 'YELLOW', 'BLUE', 'PURPLE', 'BROWN', 'PINK', 'GRAY', 'ORANGE','BLACK'];
+  colors = ['RED', 'GREEN', 'YELLOW', 'BLUE', 'PURPLE', 'BROWN', 'PINK', 'GRAY', 'ORANGE', 'BLACK'];
   DiagramTyp = ['PIECHART', 'BARCHART', 'LINECHART', 'DOUGHNUTCHART'];
   public form!: FormGroup;
-  hideElementConfiguration = false;
-  selectedLinesName!: string[];
   selectedLinesValue!: string[];
   showDatatoDisplay = false;
   data!: cityData[];
@@ -30,6 +29,7 @@ export class QueriesComponent implements OnInit {
   showButtonforTree = false;
   value!: string;
   errorMessageSend = ''
+
   private transformer = (node: cityNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -49,38 +49,44 @@ export class QueriesComponent implements OnInit {
   constructor(private service: DataGraphService, private fb: FormBuilder, private snackBar: MatSnackBar) {
 
   }
+
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ngOnInit(): void {
     this.getdata();
-this.formInitialization()
+    this.formInitialization()
   }
-formInitialization(){
-  this.form = this.fb.group({
-    queryPath: [''],
-    selectedLinesValue: this.fb.array([]),
-    diagramType: ['', Validators.required],
-    title: ['', Validators.required],
-  });
-  this.selectedLinesValue = new Array<string>();
-}
-  getdata() {
-    this.service.getAllData().subscribe({
+
+  formInitialization() {
+    this.form = this.fb.group({
+      queryPath: [''],
+      selectedLinesValue: this.fb.array([]),
+      diagramType: ['', Validators.required],
+      title: ['', Validators.required],
+    });
+    this.selectedLinesValue = new Array<string>();
+  }
+
+    getdata() {
+      this.service.getAllData().subscribe({
       next: (data) => {
         this.dataSource.data = data;
       },
       error: () => {
-        this.errorMessage = 'Sorry, es war leider nicht möglich die daten zu laden.'
+        this.errorMessage = 'Sorry, es war leider nicht möglich die daten zu laden. Überprüfen Sie die Verbindung mit' +
+          ' dem Server und versuchen Sie noch einmal.'
       },
       complete: () => {
 
       }
     })
   }
+
   removeGroup(index: number) {
     const form = this.form.get('selectedLinesValue') as FormArray;
     form.removeAt(index);
   }
+
   addGroup(lineName: string) {
     const val = this.fb.group({
       lineName: [lineName],
@@ -90,6 +96,7 @@ formInitialization(){
     form.push(val);
 
   }
+
   userTreeChoice(name: string) {
     this.nodeName = name;
     this.getCityData(name)
@@ -104,41 +111,34 @@ formInitialization(){
 
 
   getCityData(name: string) {
-    console.log(name)
+
     this.service.getCityDatabyCityName().subscribe({
       next: (data) => {
         this.data = data.filter(element => element.name == name)
         console.log(this.data)
       },
       error: () => {
-        console.log('big error')
+        this.errorMessage= 'Sorry, es war leider nicht möglich die daten zu laden. Überprüfen Sie die Verbindung mit' +
+          'dem Server und versuchen Sie noch einmal.'
       }
     })
   }
 
   toggleEditableColumn(event: any, value: number, domainName: string) {
-    this.value= domainName;
+    this.value = domainName;
     if (event.target.checked) {
       this.selectedLinesValue.push(this.value);
       this.addGroup(domainName);
       console.log(this.form.value)
-      }
-    else{
+    } else {
       this.selectedLinesValue.pop()
       const index = this.selectedLinesValue.indexOf(this.value)
       this.removeGroup(index);
-      this.selectedLinesValue.forEach(x => console.log(x))
     }
   }
 
-  tooglediagramConfigForm(){
+  tooglediagramConfigForm() {
     this.formInitialization()
-
-    this.selectedLinesValue.forEach(x => {
-      console.log(x)
-    })
-    console.log(this.form.value)
-
   }
 
   trackById(index: any) {
@@ -155,14 +155,15 @@ formInitialization(){
         })
         form.reset();
         this.errorMessageSend = '';
+        this.TreeShowControl();
       },
 
       error: () => {
-        this.errorMessageSend = 'Ihre Daten konnten leider nicht gespeichert werden. Bitte prüfen Sie Ihre Daten und versuchen Sie noch einmal.'
+        this.errorMessageSend = 'Ihre Daten konnten leider nicht gespeichert werden. Bitte prüfen Sie die Verbindung und versuchen Sie noch einmal.'
       },
       complete: () => {
 
       }
     })
   }
-  }
+}

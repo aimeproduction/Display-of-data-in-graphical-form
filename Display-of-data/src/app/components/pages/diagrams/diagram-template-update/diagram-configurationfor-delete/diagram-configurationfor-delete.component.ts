@@ -4,7 +4,6 @@ import {DialogData} from "../../../../../models/dialog-data";
 import {HttpClient} from "@angular/common/http";
 import {FormBuilder} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {DiagramLineTemplate} from "../../../../../models/diagram-line-template";
 import {DiagramTemplate} from "../../../../../models/diagram-template";
 import {DataGraphService} from "../../../../../service/data-graph.service";
 
@@ -13,7 +12,7 @@ import {DataGraphService} from "../../../../../service/data-graph.service";
   templateUrl: './diagram-configurationfor-delete.component.html',
   styleUrls: ['./diagram-configurationfor-delete.component.css']
 })
-export class DiagramConfigurationforDeleteComponent implements OnInit{
+export class DiagramConfigurationforDeleteComponent implements OnInit {
   alltableDatas!: DiagramTemplate;
   errorMessage = '';
   errorMessageLoading = '';

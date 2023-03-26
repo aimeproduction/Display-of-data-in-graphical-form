@@ -25,8 +25,6 @@ export class DiagramConfigurationforNewLineComponent implements OnInit{
   form!: FormGroup;
   lineName!: string;
   lineColor!: string;
-  lineData!: { lineName: string; lineColor: string };
-  linePosition =0;
   cityData!: CityName[];
   abteilung1!: string;
   abteilung2!: string;

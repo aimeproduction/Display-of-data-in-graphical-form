@@ -13,9 +13,9 @@
       und eine davon auszuwählen, um alle Informationen bezüglich dieser Anfrage
       in einer Tabelle anzuzeigen. Wenn Sie diese Informationen in einem Diagramm anzeigen lassen wollen, können Sie
       die Werte mit Hilfe der Kontrollkästchen auswählen. </p><br>
+      <p class="fehler">{{errorMessage}}<strong> </strong></p>
 
-      <div class="col-6" *ngIf="showTree">
-        <p class="fehler"><strong> </strong></p>
+      <div class="col-6" *ngIf="showTree && !errorMessage">
         <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
           <!-- This is the tree node template for leaf nodes -->
           <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding="">
@@ -34,6 +34,7 @@
           </mat-tree-node>
         </mat-tree>
       </div>
+
 
   <div class="treeButton" *ngIf="showButtonforTree">
     <button mat-stroked-button color="primary" (click)="TreeShowControl()">Baum anzeigen</button>
@@ -189,12 +190,14 @@
       </div>
       <mat-error *ngIf="!form.valid">
       </mat-error>
+      <p class="fehler"><strong> {{errorMessageSend}}</strong></p>
       <button class="storeData" mat-raised-button color="primary" [disabled]="!form.valid" (click)="onSubmit(this.form)">Vorlage
         speichern
       </button>
-      <p class="fehler"><strong> {{errorMessageSend}}</strong></p>
     </form>
     </div>
+
+
 </div>
 
 

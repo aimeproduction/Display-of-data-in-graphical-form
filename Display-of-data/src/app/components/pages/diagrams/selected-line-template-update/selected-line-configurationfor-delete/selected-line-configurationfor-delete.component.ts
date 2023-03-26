@@ -6,21 +6,21 @@ import {HttpClient} from "@angular/common/http";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {DiagramTemplate} from "../../../../../models/diagram-template";
 import {DataGraphService} from "../../../../../service/data-graph.service";
-import {DiagramLineTemplate} from "../../../../../models/diagram-line-template";
+
 
 @Component({
   selector: 'app-selected-line-configurationfor-delete',
   templateUrl: './selected-line-configurationfor-delete.component.html',
   styleUrls: ['./selected-line-configurationfor-delete.component.css']
 })
-export class SelectedLineConfigurationforDeleteComponent implements OnInit{
+export class SelectedLineConfigurationforDeleteComponent implements OnInit {
   alltableDatas!: DiagramTemplate;
   errorMessage = '';
   errorMessageLoading = '';
-diagramName!: string;
+  diagramName!: string;
   formDiagram!: FormGroup;
-lineName!: string;
-lineColor!: string;
+  lineName!: string;
+  lineColor!: string;
   lineData!: { lineName: string; lineColor: string };
 
 
@@ -43,7 +43,7 @@ lineColor!: string;
 
 
   DeleteLine() {
-this.formDiagram.value.title = this.alltableDatas.title;
+    this.formDiagram.value.title = this.alltableDatas.title;
     this.formDiagram.value.queryPath = this.alltableDatas.queryPath;
     this.formDiagram.value.diagramType = this.alltableDatas.diagramType;
     this.formDiagram.value.id = this.alltableDatas.id;
@@ -74,12 +74,12 @@ this.formDiagram.value.title = this.alltableDatas.title;
       next: (data) => {
         this.alltableDatas = data;
         this.diagramName = this.alltableDatas.title;
-        for( let i=0; i< this.alltableDatas.selectedLinesValue.length;i++) {
-           if(this.alltableDatas.selectedLinesValue[i].lineName == this.data.lineName){
-             this.lineData = this.alltableDatas.selectedLinesValue[i];
-             this.lineName = this.lineData.lineName;
-             this.lineColor= this.lineData.lineColor;
-           }
+        for (let i = 0; i < this.alltableDatas.selectedLinesValue.length; i++) {
+          if (this.alltableDatas.selectedLinesValue[i].lineName == this.data.lineName) {
+            this.lineData = this.alltableDatas.selectedLinesValue[i];
+            this.lineName = this.lineData.lineName;
+            this.lineColor = this.lineData.lineColor;
+          }
         }
       },
       error: () => {
