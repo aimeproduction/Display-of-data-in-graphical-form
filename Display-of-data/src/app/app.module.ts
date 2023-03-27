@@ -31,6 +31,9 @@ import { SelectedLineConfigurationforDeleteComponent } from './components/pages/
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialogModule} from "@angular/material/dialog";
 import { DiagramConfigurationforNewLineComponent } from './components/pages/diagrams/diagram-template-update/diagram-configurationfor-new-line/diagram-configurationfor-new-line.component';
+import { ControllerforDashboardCreationComponent } from './components/pages/dashboard/dashboardTemplateController/controllerfor-dashboard-creation/controllerfor-dashboard-creation.component';
+import { ControllerforDashboardDeleteComponent } from './components/pages/dashboard/dashboardTemplateController/controllerfor-dashboard-delete/controllerfor-dashboard-delete.component';
+import { AddDiagramsTemplateToDashboardComponent } from './components/pages/dashboard/dashboardTemplateController/add-diagrams-template-to-dashboard/add-diagrams-template-to-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { DiagramConfigurationforNewLineComponent } from './components/pages/diag
     DiagramConfigurationforDeleteComponent,
     SelectedLineConfigurationforUpdateComponent,
     SelectedLineConfigurationforDeleteComponent,
-    DiagramConfigurationforNewLineComponent
+    DiagramConfigurationforNewLineComponent,
+    ControllerforDashboardCreationComponent,
+    ControllerforDashboardDeleteComponent,
+    AddDiagramsTemplateToDashboardComponent
   ],
 
     imports: [
