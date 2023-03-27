@@ -1,0 +1,24 @@
+.head {
+  display: inline-block;
+  margin-left: 10%;
+}
+button{
+  margin-top: 2%;
+}
+.saveDashboard{
+  margin-top: 0;
+}
+mat-form-field{
+  margin-top: 10%;
+}
+.middlepane {
+  width: 80%;
+  height: 100vh;
+  margin-left: 20%;
+  margin-top: -43%;
+}
+
+.icondashboard{
+  border-collapse: separate;
+  border-spacing: 2em;
+}

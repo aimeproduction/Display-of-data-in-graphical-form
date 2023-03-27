@@ -155,7 +155,6 @@ export class QueriesComponent implements OnInit {
         })
         form.reset();
         this.errorMessageSend = '';
-        this.TreeShowControl();
       },
 
       error: () => {

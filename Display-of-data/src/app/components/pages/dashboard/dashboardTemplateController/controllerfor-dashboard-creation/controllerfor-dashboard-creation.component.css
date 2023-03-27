@@ -1,0 +1,13 @@
+.fehler{
+  color: red;
+}
+h2{
+  text-align: center;
+  color: blue;
+}
+
+table{
+  width: 90%;
+  margin-left: 10%;
+  font-size: 20px;
+}

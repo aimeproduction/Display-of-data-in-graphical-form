@@ -4,6 +4,52 @@
 </head>
 <body>
 <app-default></app-default>
+<div class="middlepane">
+<div class="head">
+  <form class="ui container form" appearance="fill" [formGroup]="formDashboard">
 
+    <table class="icondashboard">
+      <tr>
+        <td>
+        </td>
+        <td>
+          <button mat-fab matTooltip="Dashboard erstellen" color="primary" aria-label="erstellen"
+                  (click)="onSubmit('Dashboard erstellen')">
+            <mat-icon>add</mat-icon>
+          </button>
+        </td>
+        <td class="vertical-align">
+          <button mat-fab matTooltip="Dashboard löschen" color="warn" aria-label="löschen"
+                  (click)="onSubmit('Dashboard löschen')">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+        <td>
+          <button mat-fab matTooltip="Diagramme laden" color="primary" aria-label="laden"
+                  (click)="onSubmit('Diagramm laden')">
+            <mat-icon>timeline</mat-icon>
+          </button>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Dashboard auswählen</mat-label>
+            <mat-select formControlName="dashboard" [(ngModel)]="specificDashboard">
+              <mat-option *ngFor="let dashboard of alltableDatas" [value]="dashboard.title">
+                {{dashboard.title}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <button class="saveDashboard" mat-raised-button color="primary" [disabled]="!formDashboard.valid"
+                  >speichern
+          </button>
+        </td>
+      </tr>
+    </table>
+    <p class="fehler"><strong>{{warning}}</strong></p>
+  </form>
+</div>
+</div>
 </body>
 </html>

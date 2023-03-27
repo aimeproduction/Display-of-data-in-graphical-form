@@ -1,1 +1,44 @@
-<p>controllerfor-dashboard-creation works!</p>
+<html>
+<body>
+<div class="general">
+
+  <div class="titel">
+    <h2>Neuer Dashboard erstellen</h2>
+    <br>
+    <form class="ui container form" appearance="fill" [formGroup]="form">
+      <table>
+        <tr>
+          <td>
+      Titel des Dashboards:*
+          </td>
+          <td>
+      <mat-form-field appearance="fill">
+        <mat-label>Titel eingeben</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-error *ngIf="!form.valid">
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="onSubmit(this.form.value.title)">
+              Dashboard speichern
+            </button>
+          </td>
+          <td>
+            <button mat-stroked-button color="accent" (click)="ClickClose()">Abbrechen</button>
+          </td>
+        </tr>
+
+      </table>
+    </form>
+    <p class="fehler">  {{errorMessage}}</p>
+  </div>
+</div>
+</body>
+</html>

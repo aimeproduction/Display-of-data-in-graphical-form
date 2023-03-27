@@ -6,6 +6,7 @@ import {cityData} from "../models/cityData";
 import {CityName} from "../models/city-name";
 import {FormGroup} from "@angular/forms";
 import {DiagramTemplate} from "../models/diagram-template";
+import {DashboardName} from "../models/dashboard-name";
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +45,12 @@ data!: cityData[];
   }
   updateLinefromDiagramTemplate(id: number, form: FormGroup){
     return this.http.put<DiagramTemplate>("http://localhost:3000/diagramtemplate/"+id, form.value);
+  }
+  postDashboardName(form: FormGroup){
+    console.log(name)
+    return this.http.post<DashboardName>("http://localhost:3000/dashboardname", form);
+  }
+  getAllDashboardName(){
+    return this.http.get<DashboardName[]>("http://localhost:3000/dashboardname")
   }
 }
