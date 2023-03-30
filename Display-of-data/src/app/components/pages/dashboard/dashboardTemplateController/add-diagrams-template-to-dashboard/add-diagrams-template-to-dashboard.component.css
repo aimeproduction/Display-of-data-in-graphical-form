@@ -1,0 +1,15 @@
+h2{
+  text-align: center;
+  color: blue;
+}
+.dashboard{
+  width: 70%;
+  margin-left: 15%;
+  font-size: 20px;
+}
+.fehler{
+  color: red;
+}
+.saveDashboard{
+  text-align: center;
+}

@@ -8,6 +8,9 @@ button{
 .saveDashboard{
   margin-top: 0;
 }
+.fehler{
+  color: red;
+}
 mat-form-field{
   margin-top: 10%;
 }

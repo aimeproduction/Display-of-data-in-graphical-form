@@ -1,1 +1,47 @@
-<p>add-diagrams-template-to-dashboard works!</p>
+
+  <div class="head">
+    <form class="ui container form" appearance="fill" [formGroup]="formDashboard">
+      <h2>Diagram zum Dashboard hinzufügen</h2>
+      <br><br>
+      <table class="dashboard">
+        <tr>
+          <td>
+            Dashboard auswählen*
+          </td>
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-label>Dashboard auswählen</mat-label>
+              <mat-select formControlName="DashboardTitle" [(ngModel)]="specificDashboard">
+                <mat-option *ngFor="let dashboard of alltableDatas" [value]="dashboard.title">
+                  {{dashboard.title}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Diagram auswählen*
+          </td>
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-label>Dashboard auswählen</mat-label>
+              <mat-select formControlName="DiagramToAdd" [(ngModel)]="specificDiagram">
+                <mat-option *ngFor="let diagram of diagramTitle" [value]="diagram">
+                  {{diagram}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <br><br>
+      <div class="saveDashboard">
+        <button mat-raised-button color="primary" [disabled]="!formDashboard.valid">
+          Hinzufügen und speichern
+        </button>
+      </div>
+
+      <p class="fehler"><strong>{{warning}}</strong></p>
+    </form>
+  </div>

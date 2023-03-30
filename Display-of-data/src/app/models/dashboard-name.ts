@@ -1,3 +1,3 @@
 export interface DashboardName {
-  "title": string;
+  title: string;
 }

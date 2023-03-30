@@ -64,7 +64,7 @@ export class DashboardComponent implements  OnInit{
     } else if (this.valueToUpdate === 'Diagramm laden') {
       this.errorMessage = '';
       this.dialog.open(AddDiagramsTemplateToDashboardComponent, {
-        width: '700px', height: '2000px',
+        width: '700px', height: '400px',
         data: {dashboardName: this.specificDashboard}
       });
     } else {
@@ -76,7 +76,6 @@ export class DashboardComponent implements  OnInit{
   getDashboardValue() {
     this.service.getAllDashboardName().subscribe({
       next: (data) => {
-        console.log(data)
         this.alltableDatas = data;
         this.errorMessage = '';
       },
