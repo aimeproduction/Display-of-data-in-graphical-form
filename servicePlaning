@@ -1,0 +1,87 @@
+import {Injectable} from '@angular/core';
+
+export class Appointment {
+
+  public text!: string;
+  public displayText!: string;
+  public startDate!: Date;
+
+  public endDate!: Date;
+
+}
+
+export class Task {
+  public order_number!: number;
+  public product_number!: string;
+  public product_description!: string;
+  public duration!: number;
+  public planned_time!: Date;
+  public displayText?: string;
+  public resourceId?: number;
+}
+
+
+const appointments: Appointment[] = [];
+
+const tasks: Task[] = [
+  {
+    "order_number": 758696,
+    "product_number": "AR8J36",
+    "product_description": "PT ZK GHJ 10xG",
+    "duration": 1.5,
+    "planned_time": new Date('2023-05-12'),
+    "resourceId": 1
+  },
+  {
+    "order_number": 771690,
+    "product_number": "A32LOM",
+    "product_description": "TZ CAD OK TIME",
+    "duration": 2.0,
+    "planned_time": new Date('2023-05-17'),
+    "resourceId": 2
+  },
+  {
+    "order_number": 791937,
+    "product_number": "MN2EW9",
+    "product_description": "TEXT TO DO TODAY",
+    "duration": 3.0,
+    "planned_time": new Date('2023-05-16'),
+    "resourceId": 3
+  },
+  {
+    "order_number": 657315,
+    "product_number": "BBT58U",
+    "product_description": "ATR SOF TW ARE",
+    "duration": 5.0,
+    "planned_time": new Date('2023-05-18'),
+    "resourceId": 4
+  },
+  {
+    "order_number": 682501,
+    "product_number": "EXAM21",
+    "product_description": "TEAM FRONT END KI",
+    "duration": 3.5,
+    "planned_time": new Date('2020-06-15'),
+    "resourceId": 5
+  },
+];
+
+@Injectable()
+export class Service {
+
+  public getDinnerTime() {
+    return {from: 12, to: 13};
+  }
+
+  public getAppointments(): Appointment[] {
+    return appointments;
+  }
+
+  public getTasks(): Task[] {
+    return tasks.map((task) => {
+      task.displayText = 'Auftrag: ' + task.order_number;
+      return task;
+    });
+  }
+
+}
