@@ -1,0 +1,208 @@
+<atr-common-page>
+  <ng-container atrCommonPageHeaderLeft><i class="fa-solid fa-clock"> </i> {{ headline$ | async}}</ng-container>
+  <ng-container atrCommonPageHeaderRight></ng-container>
+  <ng-container atrCommonPageBody>
+    <p-card>
+      <div class="grid">
+        <div class="group">
+          <label class="innomes-std">
+            {{ translationModuleName + '.GROUP_HEADLINE' | translate }}</label>
+          <dx-select-box [formControl]="parentControl"
+                         [items]="assetNodes"
+                         displayExpr="asset.name"></dx-select-box>
+        </div>
+        <div class="machine">
+          <label class="innomes-std">{{ translationModuleName + '.MACHINE_HEADLINE' | translate }}</label>
+          <dx-tag-box
+            [formControl]="childrenControl"
+            [items]="childrenNodes"
+            [showClearButton]="true"
+            displayExpr="asset.name"></dx-tag-box>
+        </div>
+
+        <div *ngIf="showOrderList" class="order">
+          <label class="innomes-std">{{ translationModuleName + '.ORDER_HEADLINE' | translate }}</label>
+          <div class="list_of_order">
+            <dx-scroll-view height="50vh" id="scroll">
+              <dx-draggable
+                (onDragStart)="onListDragStart($event)"
+                [group]="draggingGroupName"
+                data="dropArea"
+                id="list">
+                <dx-draggable
+                  (onDragEnd)="onItemDragEnd($event)"
+                  (onDragStart)="onItemDragStart($event)"
+                  *ngFor="let task of tasks"
+                  [clone]="true"
+                  [data]="task"
+                  [group]="draggingGroupName"
+                  class="item dx-card dx-theme-text-color dx-theme-background-color">
+                  <p>
+                    <strong>{{ translationModuleName + '.ORDER_NUMBER_HEADLINE' | translate }}
+                      {{ task.order_number }}
+                    </strong>
+                  </p>
+                  {{ translationModuleName + '.PRODUCT_NUMBER_HEADLINE' | translate }}
+                  {{ task.product_number }}<br>
+                  {{ translationModuleName + '.PRODUCT_DESCRIPTION_HEADLINE' | translate }}
+                  {{ task.product_description }}<br>
+                  {{ translationModuleName + '.DURATION_HEADLINE' | translate }}
+                  {{ task.duration }} {{ translationModuleName + '.HOURS_HEADLINE' | translate }}<br>
+                  {{ translationModuleName + '.PLANNED_DATE_HEADLINE' | translate }}
+                  {{ task.planned_time | date}}
+                </dx-draggable>
+                <dx-draggable
+                  (onDragEnd)="onItemDragEnd($event)"
+                  *ngIf="taskLength ==0"
+                  [group]="draggingGroupName"
+                  [style]="{width: '330px', height: '350px'}"
+                  class="item dx-card dx-theme-text-color dx-theme-background-color">
+
+                </dx-draggable>
+              </dx-draggable>
+            </dx-scroll-view>
+          </div>
+        </div>
+        <div class="calendar">
+
+          <dx-scheduler
+            (onAppointmentFormOpening)="onAppointmentFormOpening($event)"
+            (onAppointmentUpdating)="onAppointmentUpdating($event)"
+            (onOptionChanged)="onOptionChanged($event)"
+            [currentDate]="currentDate"
+            [dataSource]="appointments"
+            [startDayHour]="0"
+            allDayPanelMode="hidden"
+            appointmentTooltipTemplate="tooltip-template"
+            height=77vh
+            id="scheduler"
+            textExpr="displayText"
+          >
+            <dxi-resource
+              [allowMultiple]="true"
+              [dataSource]="resources"
+              [useColorAsDefault]="true"
+              fieldExpr="resourceId"
+            ></dxi-resource>
+            <dxi-view type="day"></dxi-view>
+            <dxi-view type="workWeek"></dxi-view>
+            <dxi-view type="month"></dxi-view>
+
+            <dxo-appointment-dragging
+              [group]="draggingGroupName"
+              [onAdd]="onAppointmentAdd"
+              [onRemove]="onAppointmentRemove">
+
+              <div *dxTemplate="let model of 'tooltip-template'">
+                <div>
+                  <div class="my-tooltip">
+                    <div class="order_number">
+                      <strong>{{ translationModuleName + '.ORDER_NUMBER_HEADLINE' | translate }}
+                        {{model.appointmentData.order_number}}
+                      </strong>
+                    </div>
+
+                    <div class="other_details">
+                      {{model.appointmentData.startDate | date: 'HH:mm'}}
+                      - {{model.appointmentData.endDate | date: 'HH:mm'}}
+                      {{ translationModuleName + '.HOUR_HEADLINE' | translate }}
+                    </div>
+                    <br>
+                    <div class="other_details">
+                      {{ translationModuleName + '.PRODUCT_NUMBER_HEADLINE' | translate }}
+                      {{model.appointmentData.product_number}}
+                    </div>
+                    <div class="other_details">
+                      {{ translationModuleName + '.PRODUCT_DESCRIPTION_HEADLINE' | translate }}
+                      {{model.appointmentData.product_description}}
+                    </div>
+                    <div class="other_details">
+                      {{ translationModuleName + '.DURATION_HEADLINE' | translate }}
+                      {{model.appointmentData.duration}} {{ translationModuleName + '.HOURS_HEADLINE' | translate }}
+                    </div>
+                    <div class="other_details">
+                      {{ translationModuleName + '.PLANNED_DATE_HEADLINE' | translate }}
+                      {{model.appointmentData.planned_time | date}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </dxo-appointment-dragging>
+            <dxo-editing
+              [allowAdding]="true"
+              [allowDeleting]="true"
+              [allowDragging]="true"
+              [allowResizing]="false"
+              [allowUpdating]="true"
+            ></dxo-editing>
+          </dx-scheduler>
+
+
+          <div
+            class="dialog-pop-up">
+            <p-dialog
+              [(visible)]="visible"
+              [closable]="false"
+              [style]="{width: '40vh', height: '57vh'}"
+              header="{{ translationModuleName + '.ORDER_DETAILS_HEADLINE' | translate }} {{orderNumber}}">
+              <form (ngSubmit)="setNewTime()" [formGroup]="popUpForm">
+                <div class="calendarStartDate">
+                  <label
+                    class="innomes-label mandatory"
+                    for="endDate">
+                    {{ translationModuleName + '.START_DATE_HEADLINE' | translate}}
+                  </label>
+                  <p-calendar
+                    (onSelect)="handleStartDateChange()"
+                    [(ngModel)]="startDate"
+                    [showSeconds]="false"
+                    [showTime]="true"
+                    [style]="{width: '240px'}"
+                    appendTo="body"
+                    dataType="date"
+                    dateFormat="dd/mm/yy"
+                    formControlName="startDate" required="true">
+                  </p-calendar>
+                </div>
+
+                <div class="calendarEndDate">
+                  <label
+                    class="innomes-label mandatory"
+                    for="endDate">
+                    {{ translationModuleName + '.END_DATE_HEADLINE' | translate}}
+                  </label>
+                  <p-calendar
+                    (onSelect)="handleEndDateChange()"
+                    [(ngModel)]="endDate"
+                    [showSeconds]="false"
+                    [showTime]="true"
+                    [style]="{width: '240px'}"
+                    appendTo="body"
+                    dataType="date"
+                    dateFormat="dd/mm/yy"
+                    formControlName="endDate"
+                    id="endDate" required="true">
+                  </p-calendar>
+                </div>
+
+                <div class="validationButton">
+                  <button
+                    (click)="visible = false"
+                    class="p-button p-button-raised p-button-rounded innomes-std p-button-secondary"
+                    label="{{ translationModuleName + '.CLOSE_BUTTON_HEADLINE' | translate }}"
+                    pButton pRipple></button>
+                  <br><br>
+                  <button
+                    [disabled]="!popUpForm.valid"
+                    class="p-button-raised p-button-rounded innomes-std"
+                    label="{{ translationModuleName + '.SAVE_BUTTON_HEADLINE' | translate }}"
+                    pButton pRipple></button>
+                </div>
+              </form>
+            </p-dialog>
+          </div>
+        </div>
+      </div>
+    </p-card>
+  </ng-container>
+</atr-common-page>
